@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "file": {
+      "type": "string",
+      "description": "Name of the report file, by default is index.html or Index.html, you can search in target/reports directory after test suite execution"
+    }
+  },
+  "required": ["tag"]
+}

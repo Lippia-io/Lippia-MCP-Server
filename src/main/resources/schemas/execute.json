@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "tag": {
+      "type": "string",
+      "description": "Tag of the test suite to run"
+    }
+  },
+  "required": ["tag"]
+}

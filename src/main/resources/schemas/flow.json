@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "flow": {
+      "type": "array",
+      "description": "A sequence of actions to be executed & automatized with lippia, after that, the files need to be created in the project structure",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": { "type": "string" },
+          "url": { "type": "string" },
+          "by": { "type": "string" },
+          "value": { "type": "string" },
+          "text": { "type": "string" }
+        },
+        "required": ["action"]
+      }
+    }
+  },
+  "required": ["flow"]
+}
