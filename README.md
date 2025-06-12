@@ -1,5 +1,5 @@
 ### Lippia MCP Server
-This is a custom MCP (Model Context Protocol) server for Lippia, designed to work with any Autonomous Agent.  
+This is a custom MCP (Model Context Protocol) server for Lippia, designed to work with any Autonomous Agent that supports the protocol.  
 It allows you to run Lippia as a MCP server, exposing tools like
 * `lippia:create_test`
 * `lippia:execute_test`
