@@ -1,9 +1,11 @@
 package com.crowdar;
 
-import com.crowdar.models.Flow;
+import com.crowdar.models.Features;
+import com.crowdar.models.requests.PromptFeatureRequest;
 
-import com.crowdar.tools.CodeGenerator;
-import com.crowdar.tools.FlowParser;
+import com.crowdar.utils.PromptBuilder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
@@ -19,7 +21,6 @@ import java.io.InputStream;
 
 import java.nio.charset.StandardCharsets;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,8 @@ public class McpServerApplication {
 
     public static void main(String[] args) {
         var transportProvider = new StdioServerTransportProvider();
-        var syncToolSpecification = getSyncCreateTestToolSpecification();
+        var syncToolCreateFeatureSpecification = getSyncCreateFeatureToolSpecification();
+        var syncToolSpecification = getSyncCreateJavaTestToolSpecification();
         var syncExecutionToolSpecification = getSyncExecutionToolSpecification();
         var syncReportingToolSpecification = getSyncReportingToolSpecification();
 
@@ -36,9 +38,11 @@ public class McpServerApplication {
                 .serverInfo("lippia-mcp-server", "1.0")
                 .capabilities(McpSchema.ServerCapabilities.builder()
                         .tools(true)
+                        .prompts(true)
                         .logging()
                         .build())
                 .tools(
+                        syncToolCreateFeatureSpecification,
                         syncToolSpecification,
                         syncExecutionToolSpecification,
                         syncReportingToolSpecification)
@@ -59,22 +63,50 @@ public class McpServerApplication {
         }
     }
 
-    private static McpServerFeatures.SyncToolSpecification getSyncCreateTestToolSpecification() {
-        String schema = loadSchemaFromResource("schemas/flow.json");
+    private static McpServerFeatures.SyncToolSpecification getSyncCreateFeatureToolSpecification() {
+        String schema = loadSchemaFromResource("schemas/feature.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("create_test", "generates test/s from previous navigation with the selenium-mcp-server", schema),
+                new McpSchema.Tool("create_feature", "Genera un prompt para crear feature files a partir una o más user stories", schema),
+                (exchange, args) -> {
+                    String userStory = (String) args.get("userStory");
+
+                    String prompt = PromptBuilder.buildPromptForFeatures(
+                            new PromptFeatureRequest(userStory)
+                    );
+
+                    McpSchema.GetPromptResult gpr = new McpSchema.GetPromptResult(
+                            "Generar archivos .feature",
+                            List.of(new McpSchema.PromptMessage(McpSchema.Role.USER, new McpSchema.TextContent(prompt)))
+                    );
+
+                    return new McpSchema.CallToolResult(String.valueOf(gpr), false);
+                }
+        );
+    }
+
+    private static McpServerFeatures.SyncToolSpecification getSyncCreateJavaTestToolSpecification() {
+        String schema = loadSchemaFromResource("schemas/test.json");
+
+        return new McpServerFeatures.SyncToolSpecification(
+                new McpSchema.Tool("create_test", "Genera los tests a partir de uno o más feature files", schema),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
-                    List<McpSchema.Content> contents = new LinkedList<>();
-                    List<Flow> flows = FlowParser.parse(arguments);
+                    try {
+                        ObjectMapper mapper = new ObjectMapper();
+                        String json = mapper.writeValueAsString(arguments);
+                        Features features = mapper.readValue(json, Features.class);
 
-                    for (Flow flow : flows) {
-                        String code = CodeGenerator.fromFlow(flow)
-                                .orElseThrow(() -> new RuntimeException("Failed to generate code for flow: " + flow));
-                        contents.add(new McpSchema.TextContent(code));
+                        final String prompt = PromptBuilder.buildPromptForSteps(features);
+
+                        McpSchema.GetPromptResult gpr = new McpSchema.GetPromptResult(
+                                "Generar el glue code de los features",
+                                List.of(new McpSchema.PromptMessage(McpSchema.Role.USER, new McpSchema.TextContent(prompt)))
+                        );
+
+                        return new McpSchema.CallToolResult(String.valueOf(gpr), false);
+                    } catch (IOException e) {
+                        throw new RuntimeException("Error deserializing arguments", e);
                     }
-
-                    return new McpSchema.CallToolResult(contents, false);
                 }
         );
     }
@@ -83,7 +115,7 @@ public class McpServerApplication {
         String schema = loadSchemaFromResource("schemas/execute.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("execute_test", "executes the test/s by tag", schema),
+                new McpSchema.Tool("execute_test", "Ejecuta los tests por tag", schema),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
                     log.info("Executing tests with arguments: {}", arguments);
                     String tag = arguments.get("tag").toString();
@@ -104,7 +136,7 @@ public class McpServerApplication {
         String schema = loadSchemaFromResource("schemas/reporting.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("get_report", "It returns the report path generated by the test suite execution", schema),
+                new McpSchema.Tool("get_report", "Retorna la ruta del reporte generado post ejecución", schema),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
                     log.info("Getting report with arguments: {}", arguments);
                     String file = arguments.get("file").toString();

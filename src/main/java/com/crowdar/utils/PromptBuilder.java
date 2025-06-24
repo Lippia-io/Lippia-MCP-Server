@@ -1,7 +1,7 @@
 package com.crowdar.utils;
 
-import com.crowdar.models.Flow;
-import com.crowdar.models.requests.PromptRequest;
+import com.crowdar.models.Features;
+import com.crowdar.models.requests.PromptFeatureRequest;
 
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -9,26 +9,29 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 public class PromptBuilder {
     private static final WebClient webClient = WebClient.create(
             System.getenv().getOrDefault("PROMPT_SERVICE_BASE_URL", "http://localhost:8080"));
-    private static final String ENDPOINT = "/template";
+    private static final String FEATURE_ENDPOINT = "/template/features";
+    private static final String STEPS_ENDPOINT = "/template/steps";
 
-    public static String buildPromptFromActionsForWeb(Flow flow) {
+    public static String build(final String uri, Object body) {
         try {
-            PromptRequest request = convertFlowToPromptRequest(flow);
-
             return webClient.post()
-                    .uri(ENDPOINT)
-                    .bodyValue(request)
+                    .uri(uri)
+                    .bodyValue(body)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
         } catch (WebClientResponseException e) {
             throw new RuntimeException("Error HTTP " + e.getStatusText() + ": " + e.getResponseBodyAsString(), e);
         } catch (Exception e) {
-            throw new RuntimeException("Error building prompt from flow", e);
+            throw new RuntimeException("Error building prompt for " + uri, e);
         }
     }
 
-    private static PromptRequest convertFlowToPromptRequest(Flow flow) {
-        return new PromptRequest("web", flow.flow());
+    public static String buildPromptForFeatures(PromptFeatureRequest body) {
+        return build(FEATURE_ENDPOINT, body);
+    }
+
+    public static String buildPromptForSteps(Features body) {
+        return build(STEPS_ENDPOINT, body);
     }
 }

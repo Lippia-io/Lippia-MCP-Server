@@ -1,0 +1,10 @@
+{
+  "type":"object",
+  "properties": {
+    "userStory": {
+      "type":"string",
+      "description": "User story para generar feature files"
+    }
+  },
+  "required":["userStory"]
+}

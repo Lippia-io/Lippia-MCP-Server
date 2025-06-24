@@ -4,5 +4,5 @@ import com.crowdar.models.Action;
 
 import java.util.List;
 
-public record PromptRequest(String projectType, List<Action> actions) {
+public record PromptGlueCodeRequest(String projectType, List<Action> actions) {
 }
