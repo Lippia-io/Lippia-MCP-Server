@@ -2,25 +2,26 @@ package com.crowdar.utils;
 
 import com.crowdar.models.Features;
 import com.crowdar.models.requests.PromptFeatureRequest;
-
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestTemplate;
 
 public class PromptBuilder {
-    private static final WebClient webClient = WebClient.create(
-            System.getenv().getOrDefault("PROMPT_SERVICE_BASE_URL", "http://localhost:8080"));
+    private static final RestTemplate restTemplate = new RestTemplate();
+    private static final String BASE_URL = System.getenv().getOrDefault("PROMPT_SERVICE_BASE_URL", "http://localhost:8080");
     private static final String FEATURE_ENDPOINT = "/template/features";
     private static final String STEPS_ENDPOINT = "/template/steps";
 
     public static String build(final String uri, Object body) {
+        String url = BASE_URL + uri;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Object> request = new HttpEntity<>(body, headers);
         try {
-            return webClient.post()
-                    .uri(uri)
-                    .bodyValue(body)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .block();
-        } catch (WebClientResponseException e) {
+            return restTemplate.postForObject(url, request, String.class);
+        } catch (HttpStatusCodeException e) {
             throw new RuntimeException("Error HTTP " + e.getStatusText() + ": " + e.getResponseBodyAsString(), e);
         } catch (Exception e) {
             throw new RuntimeException("Error building prompt for " + uri, e);

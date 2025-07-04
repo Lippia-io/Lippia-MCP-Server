@@ -24,10 +24,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class McpServerApplication {
     private static final Logger log = LoggerFactory.getLogger(McpServerApplication.class);
 
     public static void main(String[] args) {
+        SpringApplication.run(McpServerApplication.class, args);
+        // Inicialización MCP Server
         var transportProvider = new StdioServerTransportProvider();
         var syncToolCreateFeatureSpecification = getSyncCreateFeatureToolSpecification();
         var syncToolSpecification = getSyncCreateJavaTestToolSpecification();
