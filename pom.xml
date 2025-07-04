@@ -74,7 +74,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.crowdar.McpServerApplication</mainClass>
+                                    <mainClass>io.lippia.McpServerApplication</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
