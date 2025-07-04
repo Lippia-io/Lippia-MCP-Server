@@ -1,6 +1,6 @@
-package com.crowdar.models.requests;
+package io.lippia.models.requests;
 
-import com.crowdar.models.Action;
+import io.lippia.models.Action;
 
 import java.util.List;
 

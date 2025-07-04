@@ -1,4 +1,4 @@
-package com.crowdar.models;
+package io.lippia.models;
 
 public record FeatureWrapper(
         Feature feature,

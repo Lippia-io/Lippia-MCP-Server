@@ -1,4 +1,4 @@
-package com.crowdar.models;
+package io.lippia.models;
 
 import java.util.List;
 

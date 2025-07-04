@@ -1,12 +1,13 @@
-package com.crowdar;
+package io.lippia;
 
-import com.crowdar.models.Features;
-import com.crowdar.models.requests.PromptFeatureRequest;
+import io.lippia.models.Features;
+import io.lippia.models.requests.PromptFeatureRequest;
 
-import com.crowdar.utils.PromptBuilder;
+import io.lippia.utils.PromptBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.lippia.utils.Resources;
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.server.McpSyncServerExchange;
@@ -17,22 +18,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-
-import java.nio.charset.StandardCharsets;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class McpServerApplication {
     private static final Logger log = LoggerFactory.getLogger(McpServerApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(McpServerApplication.class, args);
         // Inicialización MCP Server
         var transportProvider = new StdioServerTransportProvider();
         var syncToolCreateFeatureSpecification = getSyncCreateFeatureToolSpecification();
@@ -57,20 +50,8 @@ public class McpServerApplication {
         log.info("Lippia MCP Server initialized!");
     }
 
-    private static String loadSchemaFromResource(final String path) {
-        try (InputStream input = McpServerApplication.class.getClassLoader().getResourceAsStream(path)) {
-            if (input != null) {
-                return new String(input.readAllBytes(), StandardCharsets.UTF_8);
-            }
-
-            throw new IOException("Resource not found: " + path);
-        } catch (IOException e) {
-            throw new RuntimeException("Unable to load JsonSchema: " + path, e);
-        }
-    }
-
     private static McpServerFeatures.SyncToolSpecification getSyncCreateFeatureToolSpecification() {
-        String schema = loadSchemaFromResource("schemas/feature.json");
+        String schema = Resources.load("schemas/feature.json");
 
         return new McpServerFeatures.SyncToolSpecification(
                 new McpSchema.Tool("create_feature", "Genera un prompt para crear feature files a partir una o más user stories", schema),
@@ -92,7 +73,7 @@ public class McpServerApplication {
     }
 
     private static McpServerFeatures.SyncToolSpecification getSyncCreateJavaTestToolSpecification() {
-        String schema = loadSchemaFromResource("schemas/test.json");
+        String schema = Resources.load("schemas/test.json");
 
         return new McpServerFeatures.SyncToolSpecification(
                 new McpSchema.Tool("create_test", "Genera los tests a partir de uno o más feature files", schema),
@@ -118,7 +99,7 @@ public class McpServerApplication {
     }
 
     private static McpServerFeatures.SyncToolSpecification getSyncExecutionToolSpecification() {
-        String schema = loadSchemaFromResource("schemas/execute.json");
+        String schema = Resources.load("schemas/execute.json");
 
         return new McpServerFeatures.SyncToolSpecification(
                 new McpSchema.Tool("execute_test", "Ejecuta los tests por tag", schema),
@@ -139,7 +120,7 @@ public class McpServerApplication {
     }
 
     private static McpServerFeatures.SyncToolSpecification getSyncReportingToolSpecification() {
-        String schema = loadSchemaFromResource("schemas/reporting.json");
+        String schema = Resources.load("schemas/reporting.json");
 
         return new McpServerFeatures.SyncToolSpecification(
                 new McpSchema.Tool("get_report", "Retorna la ruta del reporte generado post ejecución", schema),

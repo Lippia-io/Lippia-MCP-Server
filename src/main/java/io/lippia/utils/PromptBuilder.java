@@ -1,7 +1,8 @@
-package com.crowdar.utils;
+package io.lippia.utils;
 
-import com.crowdar.models.Features;
-import com.crowdar.models.requests.PromptFeatureRequest;
+import io.lippia.models.Features;
+import io.lippia.models.requests.PromptFeatureRequest;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
