@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -571,6 +571,291 @@
         * {
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+
+        /* =================== NEW MINIMALIST ARCHITECTURE STYLES =================== */
+        
+        /* Connection Flow */
+        .connection-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .connection-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: pulse 2s infinite;
+        }
+        
+        .connection-line-elegant {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+        
+        .connection-text {
+            color: #6c757d;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        /* Architecture Layers */
+        .arch-layer {
+            margin-bottom: 1.5rem;
+        }
+        
+        .layer-header {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .layer-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .layer-content {
+            padding-left: 0.5rem;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #495057;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .tool-item {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            padding: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-item strong {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 0.25rem;
+        }
+        
+        .tool-item span {
+            font-size: 0.7rem;
+            color: #6c757d;
+            line-height: 1.3;
+        }
+        
+        /* Support Systems */
+        .support-systems {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .support-group {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 6px;
+            padding: 0.6rem;
+        }
+        
+        .support-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.3rem;
+        }
+        
+        .support-items {
+            font-size: 0.7rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        /* External Services */
+        .external-services {
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.02) 0%, rgba(123, 91, 192, 0.02) 100%);
+            border: 1px solid rgba(147, 112, 219, 0.1);
+        }
+        
+        .external-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        
+        .service-item {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(147, 112, 219, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .service-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 12px rgba(147, 112, 219, 0.15);
+        }
+        
+        .service-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.4rem;
+        }
+        
+        .service-desc {
+            font-size: 0.75rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .connection-flow {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .connection-line-elegant {
+                width: 2px;
+                height: 30px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .external-services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =================== DARK THEME OVERRIDES FOR ARCHITECTURE =================== */
+        [data-theme="dark"] .layer-title {
+            color: #e9ecef !important;
+        }
+        
+        [data-theme="dark"] .tech-item {
+            background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+            color: #f8f9fa !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .tech-item:hover {
+            background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .tool-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        [data-theme="dark"] .tool-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .tool-item strong {
+            color: #f8f9fa !important;
+        }
+        
+        [data-theme="dark"] .tool-item span {
+            color: #ced4da !important;
+        }
+        
+        [data-theme="dark"] .support-group {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .support-title {
+            color: #f8f9fa !important;
+        }
+        
+        [data-theme="dark"] .support-items {
+            color: #ced4da !important;
+        }
+        
+        [data-theme="dark"] .service-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(147, 112, 219, 0.3);
+        }
+        
+        [data-theme="dark"] .service-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 12px rgba(147, 112, 219, 0.3);
+        }
+        
+        [data-theme="dark"] .service-name {
+            color: #f8f9fa !important;
+        }
+        
+        [data-theme="dark"] .service-desc {
+            color: #ced4da !important;
+        }
+        
+        [data-theme="dark"] .connection-text {
+            background: rgba(0, 0, 0, 0.6);
+            color: #e9ecef !important;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+        }
+        
+        [data-theme="dark"] .layer-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        [data-theme="dark"] .external-services {
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(123, 91, 192, 0.1) 100%);
+            border: 1px solid rgba(147, 112, 219, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -597,7 +882,7 @@
                         </a>
                     </li>
                 </ul>
-                <div class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+                <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
                     <i class="bi bi-sun-fill" id="theme-icon"></i>
                     <span id="theme-text">Light</span>
                 </div>
@@ -613,13 +898,13 @@
                     AI Agent + Dual MCP Servers
                 </h1>
                 <p class="lead mb-4">
-                    Arquitectura completa para Testing Automatizado y Navegación Autónoma
+                    Comprehensive Architecture for Automated Testing and Autonomous Navigation
                 </p>
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <p class="fs-5">
-                            Combinando <strong>Lippia Testing Tools</strong> con <strong>Selenium Browser Automation</strong> 
-                            para crear un ecosistema de testing inteligente y autónomo.
+                            Combining <strong>Lippia Testing Tools</strong> with <strong>Selenium Browser Automation</strong> 
+                            to create an intelligent and autonomous testing ecosystem.
                         </p>
                     </div>
                 </div>
@@ -632,157 +917,101 @@
         
         <!-- Architecture Overview -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Vista General de la Arquitectura</h2>
+            <h2 class="section-title text-center">Architectural Overview</h2>
             
             <!-- AI Agent -->
-            <div class="row justify-content-center mb-4">
-                <div class="col-md-6 col-lg-4">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 col-lg-6">
                     <div class="card card-modern card-ai text-center">
-                        <div class="card-body">
-                            <div class="feature-icon icon-ai pulse mx-auto">
+                        <div class="card-body py-4">
+                            <div class="feature-icon icon-ai pulse mx-auto mb-3">
                                 <i class="bi bi-robot"></i>
                             </div>
-                            <h5 class="card-title">AI Agent</h5>
-                            <p class="small">External Actor</p>
+                            <h4 class="card-title mb-2">AI Agent</h4>
+                            <p class="text-muted mb-0">Intelligent coordinator that orchestrates both MCP servers</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Connection Lines -->
-            <div class="text-center mb-4">
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="connection-line"></div>
-                    <span class="mx-3 text-muted">connects to</span>
-                    <div class="connection-line"></div>
+            <!-- Connection Indicator -->
+            <div class="text-center mb-5">
+                <div class="connection-flow">
+                    <div class="connection-dot"></div>
+                    <div class="connection-line-elegant"></div>
+                    <span class="connection-text">connects to</span>
+                    <div class="connection-line-elegant"></div>
+                    <div class="connection-dot"></div>
                 </div>
             </div>
             
             <!-- Main Servers Row -->
-            <div class="row g-4">
+            <div class="row g-4 mb-5">
                 
                 <!-- Lippia MCP Server -->
                 <div class="col-lg-6">
                     <div class="card card-modern card-lippia h-100">
-                        <div class="card-header bg-transparent text-center">
-                            <h4 class="mb-0 text-primary">
-                                Lippia MCP Server
-                            </h4>
+                        <div class="card-header bg-transparent border-0 text-center pb-2">
+                            <h4 class="mb-0 text-primary fw-bold">Lippia MCP Server</h4>
+                            <p class="text-muted small mb-0">Automated Test Generation</p>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-3">
                             
-                            <!-- Transport Layer -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">📡 Transport Layer</h6>
-                                <div class="row g-2">
-                                    <div class="col-12">
-                                        <div class="mini-card transport-card">
-                                            <div class="mini-icon">📋</div>
-                                            <div class="mini-text">
-                                                <strong>StdIO</strong><br>
-                                                <small>MCP Protocol</small>
-                                            </div>
+                            <!-- Infrastructure -->
+                            <div class="arch-layer mb-4">
+                                <div class="layer-header">
+                                    <span class="layer-title">Infrastructure</span>
+                                </div>
+                                <div class="layer-content">
+                                    <div class="tech-stack">
+                                        <span class="tech-item">Java SDK</span>
+                                        <span class="tech-item">MCP Protocol</span>
+                                        <span class="tech-item">StdIO Transport</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Core Tools -->
+                            <div class="arch-layer mb-4">
+                                <div class="layer-header">
+                                    <span class="layer-title">Core Tools</span>
+                                </div>
+                                <div class="layer-content">
+                                    <div class="tools-grid">
+                                        <div class="tool-item">
+                                            <strong>create_feature</strong>
+                                            <span>Feature Generation</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>create_test</strong>
+                                            <span>Test Generation</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>execute_test</strong>
+                                            <span>Test Suite Execution</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>get_report</strong>
+                                            <span>Results Reporting</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Application Core -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">🎯 Application Core</h6>
-                                <div class="row g-2">
-                                    <div class="col-12">
-                                        <div class="mini-card core-card">
-                                            <div class="mini-icon">☕</div>
-                                            <div class="mini-text">
-                                                <strong>MCP Java SDK</strong><br>
-                                                <small>Application</small>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <!-- Support Systems -->
+                            <div class="arch-layer">
+                                <div class="layer-header">
+                                    <span class="layer-title">Support Systems</span>
                                 </div>
-                            </div>
-                            
-                            <!-- Lippia Tools -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">🛠️ Lippia Tools</h6>
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <div class="mini-card lippia-tool-card">
-                                            <div class="mini-icon">📝</div>
-                                            <div class="mini-text">
-                                                <strong>create_feature</strong><br>
-                                                <small>Feature Prompt</small>
-                                            </div>
+                                <div class="layer-content">
+                                    <div class="support-systems">
+                                        <div class="support-group">
+                                            <div class="support-title">Utilities</div>
+                                            <div class="support-items">PromptBuilder • MapUtils</div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mini-card lippia-tool-card">
-                                            <div class="mini-icon">🧪</div>
-                                            <div class="mini-text">
-                                                <strong>create_test</strong><br>
-                                                <small>Test Prompt</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mini-card lippia-tool-card">
-                                            <div class="mini-icon">▶️</div>
-                                            <div class="mini-text">
-                                                <strong>execute_test</strong><br>
-                                                <small>Command Gen</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mini-card lippia-tool-card">
-                                            <div class="mini-icon">📊</div>
-                                            <div class="mini-text">
-                                                <strong>get_report</strong><br>
-                                                <small>Report Path</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Utilities & Data -->
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <div class="architecture-section">
-                                        <h6 class="section-header small">🏗️ Utilities</h6>
-                                        <div class="mini-card util-card mb-2">
-                                            <div class="mini-icon">🔧</div>
-                                            <div class="mini-text">
-                                                <strong>PromptBuilder</strong><br>
-                                                <small>REST Client</small>
-                                            </div>
-                                        </div>
-                                        <div class="mini-card util-card">
-                                            <div class="mini-icon">🗂️</div>
-                                            <div class="mini-text">
-                                                <strong>MapUtils</strong><br>
-                                                <small>Data Processing</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="architecture-section">
-                                        <h6 class="section-header small">📋 Data Models</h6>
-                                        <div class="mini-card data-card mb-2">
-                                            <div class="mini-icon">📄</div>
-                                            <div class="mini-text">
-                                                <strong>Feature/Step</strong><br>
-                                                <small>Models</small>
-                                            </div>
-                                        </div>
-                                        <div class="mini-card data-card">
-                                            <div class="mini-icon">📥📤</div>
-                                            <div class="mini-text">
-                                                <strong>Request/Response</strong><br>
-                                                <small>DTOs</small>
-                                            </div>
+                                        <div class="support-group">
+                                            <div class="support-title">Models</div>
+                                            <div class="support-items">Feature/Step • Request/Response</div>
                                         </div>
                                     </div>
                                 </div>
@@ -795,160 +1024,67 @@
                 <!-- Selenium MCP Server -->
                 <div class="col-lg-6">
                     <div class="card card-modern card-selenium h-100">
-                        <div class="card-header bg-transparent text-center">
-                            <h4 class="mb-0" style="color: #fa709a;">Selenium MCP Server</h4>
+                        <div class="card-header bg-transparent border-0 text-center pb-2">
+                            <h4 class="mb-0" style="color: #fa709a; font-weight: bold;">Selenium MCP Server</h4>
+                            <p class="text-muted small mb-0">Autonomous Navigation</p>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-3">
                             
-                            <!-- Selenium Transport -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">📡 Transport Layer</h6>
-                                <div class="row g-2">
-                                    <div class="col-12">
-                                        <div class="mini-card transport-card">
-                                            <div class="mini-icon">📋</div>
-                                            <div class="mini-text">
-                                                <strong>StdIO</strong><br>
-                                                <small>MCP Protocol</small>
-                                            </div>
+                            <!-- Infrastructure -->
+                            <div class="arch-layer mb-4">
+                                <div class="layer-header">
+                                    <span class="layer-title">Infrastructure</span>
+                                </div>
+                                <div class="layer-content">
+                                    <div class="tech-stack">
+                                        <span class="tech-item">Selenium Core</span>
+                                        <span class="tech-item">MCP Protocol</span>
+                                        <span class="tech-item">WebDriver Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Core Tools -->
+                            <div class="arch-layer mb-4">
+                                <div class="layer-header">
+                                    <span class="layer-title">Core Tools</span>
+                                </div>
+                                <div class="layer-content">
+                                    <div class="tools-grid">
+                                        <div class="tool-item">
+                                            <strong>Browser Control</strong>
+                                            <span>start_browser • navigate • screenshot</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>Element Interaction</strong>
+                                            <span>find_element • click_element • send_keys</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>Advanced Actions</strong>
+                                            <span>drag_drop • hover • upload_file</span>
+                                        </div>
+                                        <div class="tool-item">
+                                            <strong>Data Extraction</strong>
+                                            <span>get_text • capture_screenshot</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Browser Core -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">🎯 Browser Core</h6>
-                                <div class="row g-2">
-                                    <div class="col-12">
-                                        <div class="mini-card core-card">
-                                            <div class="mini-icon">🔧</div>
-                                            <div class="mini-text">
-                                                <strong>Selenium MCP Core</strong><br>
-                                                <small>WebDriver Manager</small>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <!-- Support Systems -->
+                            <div class="arch-layer">
+                                <div class="layer-header">
+                                    <span class="layer-title">Support Systems</span>
                                 </div>
-                            </div>
-                            
-                            <!-- Browser Tools -->
-                            <div class="architecture-section mb-4">
-                                <h6 class="section-header">🛠️ Browser Tools</h6>
-                                <div class="row g-2">
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">🚀</div>
-                                            <div class="mini-text">
-                                                <strong>start_browser</strong><br>
-                                                <small>Launch</small>
-                                            </div>
+                                <div class="layer-content">
+                                    <div class="support-systems">
+                                        <div class="support-group">
+                                            <div class="support-title">Browsers</div>
+                                            <div class="support-items">Chrome • Firefox • WebDriver</div>
                                         </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">🧭</div>
-                                            <div class="mini-text">
-                                                <strong>navigate</strong><br>
-                                                <small>Go to URL</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">🔍</div>
-                                            <div class="mini-text">
-                                                <strong>find_element</strong><br>
-                                                <small>Locate</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">👆</div>
-                                            <div class="mini-text">
-                                                <strong>click_element</strong><br>
-                                                <small>Click</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">⌨️</div>
-                                            <div class="mini-text">
-                                                <strong>send_keys</strong><br>
-                                                <small>Type</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">📖</div>
-                                            <div class="mini-text">
-                                                <strong>get_text</strong><br>
-                                                <small>Extract</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">📸</div>
-                                            <div class="mini-text">
-                                                <strong>screenshot</strong><br>
-                                                <small>Capture</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">🔄</div>
-                                            <div class="mini-text">
-                                                <strong>drag_drop</strong><br>
-                                                <small>Move</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">👋</div>
-                                            <div class="mini-text">
-                                                <strong>hover</strong><br>
-                                                <small>Mouse Over</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-xl-4">
-                                        <div class="mini-card selenium-tool-card">
-                                            <div class="mini-icon">📁</div>
-                                            <div class="mini-text">
-                                                <strong>upload_file</strong><br>
-                                                <small>File Upload</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Browser Instance -->
-                            <div class="architecture-section">
-                                <h6 class="section-header">🌐 Browser Instance</h6>
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <div class="mini-card browser-card">
-                                            <div class="mini-icon">🔧</div>
-                                            <div class="mini-text">
-                                                <strong>WebDriver</strong><br>
-                                                <small>Chrome/Firefox</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mini-card browser-card">
-                                            <div class="mini-icon">🖥️</div>
-                                            <div class="mini-text">
-                                                <strong>Browser Session</strong><br>
-                                                <small>Active Browser</small>
-                                            </div>
+                                        <div class="support-group">
+                                            <div class="support-title">Sessions</div>
+                                            <div class="support-items">Browser Session Management</div>
                                         </div>
                                     </div>
                                 </div>
@@ -960,41 +1096,27 @@
                 
             </div>
             
-            <!-- External Microservices -->
-            <div class="row justify-content-center mt-4">
-                <div class="col-lg-8">
-                    <div class="card card-modern">
-                        <div class="card-header bg-transparent text-center">
-                            <h5 class="mb-0 text-purple">Prompt Management Microservices</h5>
+            <!-- External Services -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card card-modern external-services">
+                        <div class="card-header bg-transparent border-0 text-center pb-2">
+                            <h5 class="mb-0 text-purple fw-bold">External Services</h5>
+                            <p class="text-muted small mb-0">Prompt Management Microservices</p>
                         </div>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <div class="mini-card external-card">
-                                        <div class="mini-icon">🎯</div>
-                                        <div class="mini-text">
-                                            <strong>Prompt Management</strong><br>
-                                            <small>REST Microservice</small>
-                                        </div>
-                                    </div>
+                        <div class="card-body pt-3">
+                            <div class="external-services-grid">
+                                <div class="service-item">
+                                    <div class="service-name">Prompt Management</div>
+                                    <div class="service-desc">REST Microservice for prompt management</div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mini-card external-card">
-                                        <div class="mini-icon">📝</div>
-                                        <div class="mini-text">
-                                            <strong>/template/features</strong><br>
-                                            <small>Feature Templates</small>
-                                        </div>
-                                    </div>
+                                <div class="service-item">
+                                    <div class="service-name">Feature Templates</div>
+                                    <div class="service-desc">Endpoint /template/features</div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mini-card external-card">
-                                        <div class="mini-icon">🧪</div>
-                                        <div class="mini-text">
-                                            <strong>/template/steps</strong><br>
-                                            <small>Steps Templates</small>
-                                        </div>
-                                    </div>
+                                <div class="service-item">
+                                    <div class="service-name">Step Templates</div>
+                                    <div class="service-desc">Endpoint /template/steps</div>
                                 </div>
                             </div>
                         </div>
@@ -1006,7 +1128,7 @@
 
         <!-- Core Components -->
         <section class="mb-5">
-            <h2 class="section-title text-center">🎯 Componentes Principales</h2>
+            <h2 class="section-title text-center">🎯 Core Components</h2>
             <div class="row g-4">
                 
                 <!-- AI Agent -->
@@ -1018,11 +1140,11 @@
                             </div>
                             <h4 class="card-title">AI Agent</h4>
                             <p class="card-text">
-                                Actor externo inteligente que coordina y consume ambos servidores MCP 
-                                para automatización completa de testing y navegación.
+                                Intelligent external actor that coordinates and consumes both MCP servers 
+                                for comprehensive testing and navigation automation.
                             </p>
                             <div class="mt-3">
-                                <span class="tool-badge">Coordinación Inteligente</span>
+                                <span class="tool-badge">Intelligent Coordination</span>
                                 <span class="tool-badge">Dual Protocol Support</span>
                                 <span class="tool-badge">Autonomous Decision Making</span>
                             </div>
@@ -1066,8 +1188,8 @@
                                 Lippia MCP Server
                             </h4>
                             <p class="card-text">
-                                Servidor especializado en generación de suites de pruebas automatizadas 
-                                a partir de una o más user stories.
+                                Specialized server for generating automated test suites 
+                                from one or more user stories.
                             </p>
                             <div class="mt-3">
                                 <span class="tool-badge tool-badge-lippia">create_feature</span>
@@ -1088,8 +1210,8 @@
                             </div>
                             <h4 class="card-title">Selenium MCP Server</h4>
                             <p class="card-text">
-                                Servidor de automatización web para navegación autónoma, 
-                                interacción con elementos y captura de datos.
+                                Web automation server for autonomous navigation, 
+                                element interaction, and data capture.
                             </p>
                             <div class="mt-3">
                                 <span class="tool-badge tool-badge-selenium">start_browser</span>
@@ -1107,7 +1229,7 @@
 
         <!-- Flow Diagram -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Flujo de Trabajo Autónomo</h2>
+            <h2 class="section-title text-center">Autonomous Workflow</h2>
             <div class="flow-diagram">
                 <div class="row">
                     <div class="col-lg-2 col-md-4 flow-step">
@@ -1115,42 +1237,42 @@
                             <i class="bi bi-journal-text"></i>
                         </div>
                         <h6>User Stories</h6>
-                        <p class="small">El usuario provee las HDUs a automatizar</p>
+                        <p class="small">User provides user stories to automate</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
                         <div class="feature-icon icon-selenium">
                             <i class="bi bi-compass"></i>
                         </div>
-                        <h6>Navegación Autónoma</h6>
-                        <p class="small">El agente navega por su cuenta y mapea el flujo en memoria</p>
+                        <h6>Autonomous Navigation</h6>
+                        <p class="small">Agent navigates autonomously and maps the flow in memory</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
                         <div class="feature-icon icon-lippia">
                             <i class="bi bi-file-earmark-code"></i>
                         </div>
-                        <h6>Desarrollo de Features</h6>
-                        <p class="small">El agente acude a las user stories y genera los feature files</p>
+                        <h6>Feature Development</h6>
+                        <p class="small">Agent references user stories and generates feature files</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
                         <div class="feature-icon icon-lippia">
                             <i class="bi bi-code-slash"></i>
                         </div>
-                        <h6>Desarrollo de Glue Code</h6>
-                        <p class="small">El agente acude al mapeo en memoria y genera el glue code</p>
+                        <h6>Glue Code Development</h6>
+                        <p class="small">Agent references memory mapping and generates glue code</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
                         <div class="feature-icon icon-ai">
                             <i class="bi bi-play-circle"></i>
                         </div>
-                        <h6>Ejecución de Suites</h6>
-                        <p class="small">El agente ejecuta la suite de pruebas automatizadas</p>
+                        <h6>Suite Execution</h6>
+                        <p class="small">Agent executes the automated test suite</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
                         <div class="feature-icon icon-ai">
                             <i class="bi bi-graph-up"></i>
                         </div>
-                        <h6>Análisis de Resultados</h6>
-                        <p class="small">El agente obtiene y parsea los reportes y métricas</p>
+                        <h6>Results Analysis</h6>
+                        <p class="small">Agent retrieves and parses reports and metrics</p>
                     </div>
                 </div>
             </div>
@@ -1162,30 +1284,30 @@
             <div class="row g-4">
                 <div class="col-lg-6">
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Testing E2E Autónomo</h5>
-                        <p class="mb-0">Generación automática de tests + ejecución navegando por la aplicación</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Autonomous E2E Testing</h5>
+                        <p class="mb-0">Automatic test generation + execution navigating through the application</p>
                     </div>
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Web Scraping Inteligente</h5>
-                        <p class="mb-0">Navegación y extracción de datos con lógica de inteligencia artificial</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Intelligent Web Scraping</h5>
+                        <p class="mb-0">Navigation and data extraction with artificial intelligence logic</p>
                     </div>
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Automatización de Formularios</h5>
-                        <p class="mb-0">Llenado automático de formularios complejos con validación</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Form Automation</h5>
+                        <p class="mb-0">Automatic completion of complex forms with validation</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Validación Visual</h5>
-                        <p class="mb-0">Screenshots + análisis de AI para verificar interfaces de usuario</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Visual Validation</h5>
+                        <p class="mb-0">Screenshots + AI analysis to verify user interfaces</p>
                     </div>
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Testing Exploratorio</h5>
-                        <p class="mb-0">AI explora la aplicación y genera tests dinámicamente</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Exploratory Testing</h5>
+                        <p class="mb-0">AI explores the application and generates tests dynamically</p>
                     </div>
                     <div class="capability-item">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Reportes Inteligentes</h5>
-                        <p class="mb-0">Generación automática de reportes con insights y recomendaciones</p>
+                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>Intelligent Reports</h5>
+                        <p class="mb-0">Automatic report generation with insights and recommendations</p>
                     </div>
                 </div>
             </div>
@@ -1193,33 +1315,33 @@
 
         <!-- Statistics -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Estadísticas del Sistema</h2>
+            <h2 class="section-title text-center">System Statistics</h2>
             <div class="row g-4">
                 <div class="col-md-3">
                     <div class="stats-card">
                         <div class="stats-number">14</div>
-                        <h6 class="text-muted">Tools Disponibles</h6>
+                        <h6 class="text-muted">Available Tools</h6>
                         <p class="small">4 Lippia + 10 Selenium</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stats-card">
                         <div class="stats-number">2</div>
-                        <h6 class="text-muted">Protocolos MCP</h6>
+                        <h6 class="text-muted">MCP Protocols</h6>
                         <p class="small">StdIO + HTTP REST</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stats-card">
                         <div class="stats-number">∞</div>
-                        <h6 class="text-muted">Navegadores</h6>
+                        <h6 class="text-muted">Browsers</h6>
                         <p class="small">Chrome + Firefox</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stats-card">
                         <div class="stats-number">100%</div>
-                        <h6 class="text-muted">Automatización</h6>
+                        <h6 class="text-muted">Automation</h6>
                         <p class="small">End-to-End Testing</p>
                     </div>
                 </div>
@@ -1228,12 +1350,12 @@
 
         <!-- Technical Details -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Detalles Técnicos</h2>
+            <h2 class="section-title text-center">Technical Details</h2>
             <div class="row g-4">
                 <div class="col-lg-6">
                     <div class="card card-modern h-100">
                         <div class="card-header bg-transparent">
-                            <h5 class="mb-0"><i class="bi bi-stack me-2"></i>Stack Tecnológico</h5>
+                            <h5 class="mb-0"><i class="bi bi-stack me-2"></i>Technology Stack</h5>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
@@ -1249,15 +1371,15 @@
                 <div class="col-lg-6">
                     <div class="card card-modern h-100">
                         <div class="card-header bg-transparent">
-                            <h5 class="mb-0"><i class="bi bi-diagram-3 me-2"></i>Arquitectura</h5>
+                            <h5 class="mb-0"><i class="bi bi-diagram-3 me-2"></i>Architecture</h5>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Microservicios:</strong> Separación de responsabilidades</li>
+                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Microservices:</strong> Separation of concerns</li>
                                 <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Dual Protocol:</strong> MCP + REST APIs</li>
-                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Escalable:</strong> Arquitectura modular</li>
-                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Extensible:</strong> Fácil agregar nuevos tools</li>
-                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Resiliente:</strong> Manejo de errores robusto</li>
+                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Scalable:</strong> Modular architecture</li>
+                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Extensible:</strong> Easy to add new tools</li>
+                                <li class="mb-2"><i class="bi bi-dot text-success"></i><strong>Resilient:</strong> Robust error handling</li>
                             </ul>
                         </div>
                     </div>
@@ -1275,7 +1397,7 @@
                 Powered by Lippia & Selenium MCP
             </p>
             <p class="small text-muted mt-2">
-                Testing Automatizado • Navegación Autónoma • Inteligencia Artificial
+                Automated Testing • Autonomous Navigation • Artificial Intelligence
             </p>
         </div>
     </footer>

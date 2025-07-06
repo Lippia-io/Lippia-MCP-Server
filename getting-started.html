@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -526,7 +526,7 @@
                         </a>
                     </li>
                 </ul>
-                <div class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+                <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
                     <i class="bi bi-sun-fill" id="theme-icon"></i>
                     <span id="theme-text">Light</span>
                 </div>
@@ -542,12 +542,12 @@
                     <i class="bi bi-rocket-takeoff me-3"></i>Getting Started
                 </h1>
                 <p class="lead mb-4">
-                    Guía completa para configurar y usar la arquitectura AI Agent + Dual MCP Servers
+                    Complete guide to configure and use the AI Agent + Dual MCP Servers architecture
                 </p>
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <p class="fs-5">
-                            Sigue estos pasos para levantar los servidores MCP y comenzar a automatizar con inteligencia artificial.
+                            Follow these steps to deploy the MCP servers and start automating with artificial intelligence.
                         </p>
                     </div>
                 </div>
@@ -560,7 +560,7 @@
         
         <!-- Prerequisites -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Prerequisitos</h2>
+            <h2 class="section-title text-center">Prerequisites</h2>
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="prerequisite-card">
@@ -578,9 +578,9 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="prerequisite-card">
-                        <h5><i class="bi bi-browser-chrome me-2"></i>Navegadores Web</h5>
-                        <p class="mb-2"><strong>Soportados:</strong> Chrome, Firefox</p>
-                        <p class="mb-0"><strong>WebDrivers:</strong> Se descargan automáticamente</p>
+                        <h5><i class="bi bi-browser-chrome me-2"></i>Web Browsers</h5>
+                        <p class="mb-2"><strong>Supported:</strong> Chrome, Firefox</p>
+                        <p class="mb-0"><strong>WebDrivers:</strong> Downloaded automatically</p>
                     </div>
                 </div>
             </div>
@@ -590,7 +590,7 @@
         <section class="mb-5">
         
             <!-- OS-Specific Installation Instructions -->
-            <h3 class="section-title text-center" style="margin-top: 4rem;">Instalación</h3>
+            <h3 class="section-title text-center" style="margin-top: 4rem;">Installation</h3>
             
             <!-- OS Tabs -->
             <ul class="nav nav-tabs os-tabs" id="osTabs" role="tablist">
@@ -619,10 +619,10 @@
                     <!-- Step 1 -->
                     <div class="step-card fade-in">
                         <div class="step-number">1</div>
-                        <h4>Clonar el Repositorio</h4>
-                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
+                        <h4>Clone the Repository</h4>
+                        <p>Download the project source code from the repository.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
@@ -632,31 +632,31 @@
                     <!-- Step 2 -->
                     <div class="step-card fade-in">
                         <div class="step-number">2</div>
-                        <h4>Compilar el Proyecto</h4>
-                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
+                        <h4>Compile the Project</h4>
+                        <p>Use Maven to compile and package the Lippia MCP server.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             mvn clean package
                         </div>
                         <div class="success-card">
                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                            <strong>Expected result:</strong> The file <code>target/mcp-server-1.0-SNAPSHOT.jar</code> is generated
                         </div>
                     </div>
 
                     <!-- Step 3 -->
                     <div class="step-card fade-in">
                         <div class="step-number">3</div>
-                        <h4>Configurar el Agente</h4>
-                        <p>Cursor o Claude Desktop.</p>
+                        <h4>Configure the Agent</h4>
+                        <p>Cursor or Claude Desktop.</p>
                         <div class="warning-card">
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                            <strong>Importante:</strong> En Windows, usa la ruta completa con barras invertidas (backslashes).
+                            <strong>Important:</strong> On Windows, use the full path with backslashes.
                         </div>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                         {<br/>
@@ -677,13 +677,13 @@
                     <!-- Step 4 -->
                     <div class="step-card fade-in">
                         <div class="step-number">4</div>
-                        <h4>Verificar Conectividad</h4>
-                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <h4>Verify Connectivity</h4>
+                        <p>Test that both MCP servers are working correctly.</p>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <h6>Lippia MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - create_feature<br/>
@@ -695,7 +695,7 @@
                             <div class="col-md-6">
                                 <h6>Selenium MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - start_browser<br/>
@@ -719,7 +719,7 @@
                         <h4>Clonar el Repositorio</h4>
                         <p>Descarga el código fuente del proyecto desde el repositorio.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
@@ -732,7 +732,7 @@
                         <h4>Compilar el Proyecto</h4>
                         <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             mvn clean package
@@ -753,7 +753,7 @@
                             <strong>Importante:</strong> En macOS, usa la ruta completa comenzando desde /Users/tu-usuario.
                         </div>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                         {<br/>
@@ -780,7 +780,7 @@
                             <div class="col-md-6">
                                 <h6>Lippia MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - create_feature<br/>
@@ -792,7 +792,7 @@
                             <div class="col-md-6">
                                 <h6>Selenium MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - start_browser<br/>
@@ -816,7 +816,7 @@
                         <h4>Clonar el Repositorio</h4>
                         <p>Descarga el código fuente del proyecto desde el repositorio.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
@@ -829,7 +829,7 @@
                         <h4>Compilar el Proyecto</h4>
                         <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             mvn clean package
@@ -850,7 +850,7 @@
                             <strong>Importante:</strong> En Linux, usa la ruta completa comenzando desde /home/tu-usuario.
                         </div>
                         <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                         {<br/>
@@ -877,7 +877,7 @@
                             <div class="col-md-6">
                                 <h6>Lippia MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - create_feature<br/>
@@ -889,7 +889,7 @@
                             <div class="col-md-6">
                                 <h6>Selenium MCP Server</h6>
                                 <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
 - start_browser<br/>
@@ -909,20 +909,20 @@
 
         <!-- Usage Examples -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Ejemplo de Uso</h2>
+            <h2 class="section-title text-center">Usage Example</h2>
             
             <div class="row g-4">
                 <div class="col-lg-12">
                     <div class="card card-modern">
                         <div class="card-header bg-transparent">
                             <h5 class="mb-0">
-                                <i class="bi bi-robot me-2"></i>Flujo Autónomo Completo
+                                <i class="bi bi-robot me-2"></i>Complete Autonomous Flow
                             </h5>
                         </div>
                         <div class="card-body">
                             <p><strong>Prompt:</strong></p>
                             <div class="code-block">
-                                <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                     <i class="bi bi-clipboard"></i>
                                 </button>
                                 Hola, por favor, seguí los siguientes pasos:<br/><br/>
@@ -963,7 +963,7 @@
                                 5. Ejecuta los tests en Java con Lippia MCP.<br/>
                             </div>
                             <p class="small text-muted mt-2">
-                                El AI Agent coordinará automáticamente ambos servidores MCP para completar todo el flujo.
+                                The AI Agent will automatically coordinate both MCP servers to complete the entire flow.
                             </p>
                         </div>
                     </div>
@@ -982,7 +982,7 @@
                     <h6>TBC</h6>
                     <p>TBC Paragraph</p>
                     <div class="code-block">
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                             <i class="bi bi-clipboard"></i>
                         </button>
                         !!codeblock
@@ -993,7 +993,7 @@
                     <h6>TBC</h6>
                     <p>TBC Paragraph</p>
                     <div class="code-block">
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                             <i class="bi bi-clipboard"></i>
                         </button>
                         !!codeblock
@@ -1009,16 +1009,16 @@
 
         <!-- Next Steps -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Próximos Pasos</h2>
+            <h2 class="section-title text-center">Next Steps</h2>
             
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card card-modern text-center h-100">
                         <div class="card-body">
                             <i class="bi bi-book display-4 text-primary mb-3"></i>
-                            <h5>Documentación</h5>
-                            <p>Explora la documentación completa de la API y ejemplos avanzados.</p>
-                            <a href="index.html" class="btn btn-outline-primary">Ver Arquitectura</a>
+                            <h5>Documentation</h5>
+                            <p>Explore the complete API documentation and advanced examples.</p>
+                            <a href="index.html" class="btn btn-outline-primary">View Architecture</a>
                         </div>
                     </div>
                 </div>
@@ -1026,8 +1026,8 @@
                     <div class="card card-modern text-center h-100">
                         <div class="card-body">
                             <i class="bi bi-github display-4 text-primary mb-3"></i>
-                            <h5>Contribuir</h5>
-                            <p>Contribuye al proyecto y comparte tus mejoras con la comunidad.</p>
+                            <h5>Contribute</h5>
+                            <p>Contribute to the project and share your improvements with the community.</p>
                             <a href="#" class="btn btn-outline-primary">GitHub Repo</a>
                         </div>
                     </div>
@@ -1036,9 +1036,9 @@
                     <div class="card card-modern text-center h-100">
                         <div class="card-body">
                             <i class="bi bi-chat-dots display-4 text-primary mb-3"></i>
-                            <h5>Soporte</h5>
-                            <p>¿Necesitas ayuda? Únete a nuestra comunidad de desarrolladores.</p>
-                            <a href="#" class="btn btn-outline-primary">Comunidad</a>
+                            <h5>Support</h5>
+                            <p>Need help? Join our developer community.</p>
+                            <a href="#" class="btn btn-outline-primary">Community</a>
                         </div>
                     </div>
                 </div>
@@ -1055,7 +1055,7 @@
                 Ready to Automate
             </p>
             <p class="small text-muted mt-2">
-                Testing Automatizado • Navegación Autónoma • Inteligencia Artificial
+                Automated Testing • Autonomous Navigation • Artificial Intelligence
             </p>
         </div>
     </footer>
