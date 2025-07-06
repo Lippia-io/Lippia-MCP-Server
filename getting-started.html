@@ -441,6 +441,65 @@
         * {
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+
+        /* OS Tabs Styles */
+        .os-tabs {
+            border-bottom: 2px solid #eee;
+            margin: 3rem 0 2rem 0;
+        }
+        
+        .os-tabs .nav-link {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary, #64748b);
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+        
+        .os-tabs .nav-link:hover {
+            color: #667eea;
+            border-color: #667eea;
+            background: none;
+            transform: none;
+        }
+        
+        .os-tabs .nav-link.active {
+            color: #667eea;
+            border-color: #667eea;
+            background: none;
+        }
+        
+        .os-tabs .nav-link.windows.active {
+            color: #0078d4;
+            border-color: #0078d4;
+        }
+        
+        .os-tabs .nav-link.macos.active {
+            color: #007aff;
+            border-color: #007aff;
+        }
+        
+        .os-tabs .nav-link.linux.active {
+            color: #f77b00;
+            border-color: #f77b00;
+        }
+
+        [data-theme="dark"] .os-tabs {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .os-tabs .nav-link {
+            color: #cbd5e0;
+        }
+
+        [data-theme="dark"] .os-tabs .nav-link:hover,
+        [data-theme="dark"] .os-tabs .nav-link.active {
+            color: #8b5fbf;
+            border-color: #8b5fbf;
+        }
     </style>
 </head>
 <body>
@@ -529,100 +588,323 @@
 
         <!-- Installation Steps -->
         <section class="mb-5">
-            <h2 class="section-title text-center">Instalación y Configuración</h2>
+        
+            <!-- OS-Specific Installation Instructions -->
+            <h3 class="section-title text-center" style="margin-top: 4rem;">Instalación</h3>
             
-            <!-- Step 1 -->
-            <div class="step-card fade-in">
-                <div class="step-number">1</div>
-                <h4>Clonar el Repositorio</h4>
-                <p>Descarga el código fuente del proyecto desde el repositorio.</p>
-                <div class="code-block">
-                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
-                        <i class="bi bi-clipboard"></i>
+            <!-- OS Tabs -->
+            <ul class="nav nav-tabs os-tabs" id="osTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active windows" id="windows-tab" data-bs-toggle="tab" data-bs-target="#windows" type="button" role="tab">
+                        <i class="bi bi-windows me-2"></i>Windows
                     </button>
-                    git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="step-card fade-in">
-                <div class="step-number">2</div>
-                <h4>Compilar el Proyecto</h4>
-                <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
-                <div class="code-block">
-                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
-                        <i class="bi bi-clipboard"></i>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link macos" id="macos-tab" data-bs-toggle="tab" data-bs-target="#macos" type="button" role="tab">
+                        <i class="bi bi-apple me-2"></i>macOS
                     </button>
-                    mvn clean package
-                </div>
-                <div class="success-card">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step-card fade-in">
-                <div class="step-number">3</div>
-                <h4>Configurar el Agente</h4>
-                <p>Cursor o Claude Desktop.</p>
-                <div class="warning-card">
-                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                    <strong>Importante:</strong> Asegúrate de ingresar a la configuración de Cursor o Claude Desktop para configurar los servidores MCP que consumirá.
-                </div>
-                <div class="code-block">
-                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
-                        <i class="bi bi-clipboard"></i>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link linux" id="linux-tab" data-bs-toggle="tab" data-bs-target="#linux" type="button" role="tab">
+                        <i class="bi bi-ubuntu me-2"></i>Linux
                     </button>
-                {<br/>
-                &nbsp;&nbsp;"mcpServers": {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/ruta/completa/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                &nbsp;&nbsp;}<br/>
-                }
-                </div>
-            </div>
+                </li>
+            </ul>
 
-            <!-- Step 4 -->
-            <div class="step-card fade-in">
-                <div class="step-number">4</div>
-                <h4>Verificar Conectividad</h4>
-                <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <h6>Lippia MCP Server</h6>
+            <!-- Tab Content -->
+            <div class="tab-content" id="osTabsContent">
+                <!-- Windows -->
+                <div class="tab-pane fade show active" id="windows" role="tabpanel">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <h4>Clonar el Repositorio</h4>
+                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
                                 <i class="bi bi-clipboard"></i>
                             </button>
+                            git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <h4>Compilar el Proyecto</h4>
+                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            mvn clean package
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <h4>Configurar el Agente</h4>
+                        <p>Cursor o Claude Desktop.</p>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Importante:</strong> En Windows, usa la ruta completa con barras invertidas (backslashes).
+                        </div>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                        {<br/>
+                        &nbsp;&nbsp;"mcpServers": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "C:\\ruta\\completa\\target\\mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                        &nbsp;&nbsp;}<br/>
+                        }
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h4>Verificar Conectividad</h4>
+                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h6>Lippia MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
 - create_feature<br/>
 - create_test<br/>
 - execute_test<br/>
 - get_report<br/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>Selenium MCP Server</h6>
-                        <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
-                                <i class="bi bi-clipboard"></i>
-                            </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Selenium MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
 - start_browser<br/>
 - navigate<br/>
 - find_element<br/>
 - click_element<br/>
 - send_keys<br/>
 - screenshot<br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- macOS -->
+                <div class="tab-pane fade" id="macos" role="tabpanel">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <h4>Clonar el Repositorio</h4>
+                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <h4>Compilar el Proyecto</h4>
+                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            mvn clean package
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <h4>Configurar el Agente</h4>
+                        <p>Cursor o Claude Desktop.</p>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Importante:</strong> En macOS, usa la ruta completa comenzando desde /Users/tu-usuario.
+                        </div>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                        {<br/>
+                        &nbsp;&nbsp;"mcpServers": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/Users/tu-usuario/ruta/completa/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                        &nbsp;&nbsp;}<br/>
+                        }
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h4>Verificar Conectividad</h4>
+                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h6>Lippia MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- create_feature<br/>
+- create_test<br/>
+- execute_test<br/>
+- get_report<br/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Selenium MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- start_browser<br/>
+- navigate<br/>
+- find_element<br/>
+- click_element<br/>
+- send_keys<br/>
+- screenshot<br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux -->
+                <div class="tab-pane fade" id="linux" role="tabpanel">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <h4>Clonar el Repositorio</h4>
+                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <h4>Compilar el Proyecto</h4>
+                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            mvn clean package
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <h4>Configurar el Agente</h4>
+                        <p>Cursor o Claude Desktop.</p>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Importante:</strong> En Linux, usa la ruta completa comenzando desde /home/tu-usuario.
+                        </div>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                        {<br/>
+                        &nbsp;&nbsp;"mcpServers": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/tu-usuario/ruta/completa/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                        &nbsp;&nbsp;}<br/>
+                        }
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h4>Verificar Conectividad</h4>
+                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h6>Lippia MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- create_feature<br/>
+- create_test<br/>
+- execute_test<br/>
+- get_report<br/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Selenium MCP Server</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copiar al portapapeles">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- start_browser<br/>
+- navigate<br/>
+- find_element<br/>
+- click_element<br/>
+- send_keys<br/>
+- screenshot<br/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </section>
 
         <!-- Usage Examples -->
@@ -912,6 +1194,22 @@
              document.documentElement.setAttribute('data-theme', theme);
              updateThemeIcon(theme);
          }
+
+         // Tab switching animation for OS tabs
+         document.addEventListener('DOMContentLoaded', function() {
+             const tabButtons = document.querySelectorAll('#osTabs [data-bs-toggle="tab"]');
+             tabButtons.forEach(button => {
+                 button.addEventListener('click', function() {
+                     const targetTab = document.querySelector(this.getAttribute('data-bs-target'));
+                     if (targetTab) {
+                         targetTab.classList.add('fade-in');
+                         setTimeout(() => {
+                             targetTab.classList.remove('fade-in');
+                         }, 600);
+                     }
+                 });
+             });
+         });
     </script>
 </body>
 </html> 
