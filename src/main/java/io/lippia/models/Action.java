@@ -1,4 +1,4 @@
 package io.lippia.models;
 
-public record Action(String action, String url, String by, String value, String text) {
+public record Action(String action, ActionParameters parameters) {
 }

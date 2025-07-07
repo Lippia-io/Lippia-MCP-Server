@@ -1,4 +1,6 @@
 package io.lippia.models;
 
-public record Step(String description) {
+import java.util.List;
+
+public record Step(String description, List<Action> actions) {
 }
