@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Getting Started - AI Agent + MCP Servers</title>
+    <title>Getting Started - AI Agent + MCP Servers</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -444,7 +444,7 @@
 
         /* OS Tabs Styles */
         .os-tabs {
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #e2e8f0;
             margin: 3rem 0 2rem 0;
         }
         
@@ -452,39 +452,80 @@
             background: none;
             border: none;
             border-bottom: 3px solid transparent;
-            color: var(--text-secondary, #64748b);
-            font-weight: 500;
+            color: #475569;
+            font-weight: 600;
             padding: 1rem 1.5rem;
             transition: all 0.3s ease;
             margin: 0;
+            font-size: 1rem;
         }
         
         .os-tabs .nav-link:hover {
             color: #667eea;
-            border-color: #667eea;
-            background: none;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
             transform: none;
         }
         
         .os-tabs .nav-link.active {
-            color: #667eea;
-            border-color: #667eea;
-            background: none;
+            color: #667eea !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            border-bottom: 3px solid #667eea !important;
+            border-radius: 0 !important;
+        }
+        
+        .os-tabs .nav-link.windows {
+            color: #475569;
+        }
+        
+        .os-tabs .nav-link.windows:hover,
+        .os-tabs .nav-link.windows.active {
+            color: #0078d4 !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
         }
         
         .os-tabs .nav-link.windows.active {
-            color: #0078d4;
-            border-color: #0078d4;
+            border-bottom: 3px solid #0078d4 !important;
+        }
+        
+        .os-tabs .nav-link.macos {
+            color: #475569;
+        }
+        
+        .os-tabs .nav-link.macos:hover,
+        .os-tabs .nav-link.macos.active {
+            color: #ff6daa !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
         }
         
         .os-tabs .nav-link.macos.active {
-            color: #007aff;
-            border-color: #007aff;
+            border-bottom: 3px solid #ff6daa !important;
+        }
+        
+        .os-tabs .nav-link.linux {
+            color: #475569;
+        }
+        
+        .os-tabs .nav-link.linux:hover,
+        .os-tabs .nav-link.linux.active {
+            color: #f77b00 !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
         }
         
         .os-tabs .nav-link.linux.active {
-            color: #f77b00;
-            border-color: #f77b00;
+            border-bottom: 3px solid #f77b00 !important;
         }
 
         [data-theme="dark"] .os-tabs {
@@ -497,8 +538,62 @@
 
         [data-theme="dark"] .os-tabs .nav-link:hover,
         [data-theme="dark"] .os-tabs .nav-link.active {
-            color: #8b5fbf;
-            border-color: #8b5fbf;
+            color: #8b5fbf !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            transform: none !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.active {
+            border-bottom: 3px solid #8b5fbf !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.windows:hover,
+        [data-theme="dark"] .os-tabs .nav-link.windows.active {
+            color: #40a9ff !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            transform: none !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.windows.active {
+            border-bottom: 3px solid #40a9ff !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.macos:hover,
+        [data-theme="dark"] .os-tabs .nav-link.macos.active {
+            color: #ff6daa !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            transform: none !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.macos.active {
+            border-bottom: 3px solid #ff6daa !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.linux:hover,
+        [data-theme="dark"] .os-tabs .nav-link.linux.active {
+            color: #ffa940 !important;
+            background: none !important;
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            transform: none !important;
+        }
+        
+        [data-theme="dark"] .os-tabs .nav-link.linux.active {
+            border-bottom: 3px solid #ffa940 !important;
         }
     </style>
 </head>
@@ -508,7 +603,7 @@
     <nav class="navbar navbar-expand-lg" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <i class="bi bi-robot me-2"></i>AI MCP Architecture
+                <i class="bi bi-robot me-2"></i>Lippia AI Architecture
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -517,7 +612,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="index.html">
-                            <i class="bi bi-house-door me-1"></i>Inicio
+                            <i class="bi bi-house-door me-1"></i>Home
                         </a>
                     </li>
                     <li class="nav-item">
@@ -708,6 +803,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
                 <!-- macOS -->
@@ -1051,7 +1148,7 @@
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
             <p class="mb-0">
-                🚀 <strong>Getting Started - AI Agent + Dual MCP Servers</strong> - 
+                <strong>Getting Started - AI Agent + Dual MCP Servers</strong> - 
                 Ready to Automate
             </p>
             <p class="small text-muted mt-2">
