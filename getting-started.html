@@ -715,12 +715,153 @@
                     <div class="step-card fade-in">
                         <div class="step-number">1</div>
                         <h4>Clone the Repository</h4>
-                        <p>Download the project source code from the repository.</p>
+                        <p>Open PowerShell as Administrator and clone the Lippia MCP Server project.</p>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Expected result:</strong> Project cloned successfully and you're now in the project directory.
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <h4>Compile the Project</h4>
+                        <p>Use Maven to compile and package the Lippia MCP server.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            mvn clean package
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Expected result:</strong> The file <code>target\mcp-server-1.0-SNAPSHOT.jar</code> is generated
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <h4>Install Cursor via CLI</h4>
+                        <p>Install Cursor AI Editor using Windows Package Manager (winget).</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            winget install Cursor
+                        </div>
+                        <div class="warning-card">
+                            <i class="bi bi-info-circle-fill text-info me-2"></i>
+                            <strong>Alternative:</strong> If winget is not available, download from <a href="https://cursor.sh" target="_blank">cursor.sh</a>
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Verify installation:</strong> Type <code>cursor --version</code> in PowerShell
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h4>Configure MCP Servers in Cursor</h4>
+                        <p>Open Cursor settings and configure the MCP servers in the configuration JSON.</p>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Location:</strong> <code>%APPDATA%\Cursor\User\globalStorage\cursor.settings\settings.json</code>
+                        </div>
+                        <p><strong>Steps to configure:</strong></p>
+                        <ol class="ps-3">
+                            <li>Open Cursor</li>
+                            <li>Press <kbd>Ctrl+Shift+P</kbd> and search for "Preferences: Open Settings (JSON)"</li>
+                            <li>Add the following MCP servers configuration:</li>
+                        </ol>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                        {<br/>
+                        &nbsp;&nbsp;"mcpServers": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "C:\\path\\to\\your\\project\\target\\mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                        &nbsp;&nbsp;}<br/>
+                        }
+                        </div>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Important:</strong> Replace <code>C:\\path\\to\\your\\project</code> with your actual project path using double backslashes.
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">5</div>
+                        <h4>Verify Connectivity</h4>
+                        <p>Restart Cursor and test that both MCP servers are working correctly.</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <h6>Lippia MCP Server Tools</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- mcp_lippia_create_feature<br/>
+- mcp_lippia_create_test<br/>
+- mcp_lippia_execute_test<br/>
+- mcp_lippia_get_report<br/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Selenium MCP Server Tools</h6>
+                                <div class="code-block">
+                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+- mcp_selenium_start_browser<br/>
+- mcp_selenium_navigate<br/>
+- mcp_selenium_find_element<br/>
+- mcp_selenium_click_element<br/>
+- mcp_selenium_send_keys<br/>
+- mcp_selenium_take_screenshot<br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Test:</strong> In Cursor chat, type: "Show me available MCP tools" to verify both servers are connected.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- macOS -->
+                <div class="tab-pane fade" id="macos" role="tabpanel">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <h4>Clone the Repository</h4>
+                        <p>Open Terminal and clone the Lippia MCP Server project.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Expected result:</strong> Project cloned successfully and you're now in the project directory.
                         </div>
                     </div>
 
@@ -744,111 +885,42 @@
                     <!-- Step 3 -->
                     <div class="step-card fade-in">
                         <div class="step-number">3</div>
-                        <h4>Configure the Agent</h4>
-                        <p>Cursor or Claude Desktop.</p>
+                        <h4>Install Cursor via CLI</h4>
+                        <p>Install Cursor AI Editor using Homebrew.</p>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            # Install Homebrew if you don't have it<br/>
+                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"<br/><br/>
+                            # Install Cursor<br/>
+                            brew install --cask cursor
+                        </div>
                         <div class="warning-card">
-                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                            <strong>Important:</strong> On Windows, use the full path with backslashes.
-                        </div>
-                        <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                <i class="bi bi-clipboard"></i>
-                            </button>
-                        {<br/>
-                        &nbsp;&nbsp;"mcpServers": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "C:\\ruta\\completa\\target\\mcp-server-1.0-SNAPSHOT.jar"]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;}<br/>
-                        }
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="step-card fade-in">
-                        <div class="step-number">4</div>
-                        <h4>Verify Connectivity</h4>
-                        <p>Test that both MCP servers are working correctly.</p>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <h6>Lippia MCP Server</h6>
-                                <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-- create_feature<br/>
-- create_test<br/>
-- execute_test<br/>
-- get_report<br/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Selenium MCP Server</h6>
-                                <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-- start_browser<br/>
-- navigate<br/>
-- find_element<br/>
-- click_element<br/>
-- send_keys<br/>
-- screenshot<br/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <!-- macOS -->
-                <div class="tab-pane fade" id="macos" role="tabpanel">
-                    
-                    <!-- Step 1 -->
-                    <div class="step-card fade-in">
-                        <div class="step-number">1</div>
-                        <h4>Clonar el Repositorio</h4>
-                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
-                        <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                <i class="bi bi-clipboard"></i>
-                            </button>
-                            git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="step-card fade-in">
-                        <div class="step-number">2</div>
-                        <h4>Compilar el Proyecto</h4>
-                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
-                        <div class="code-block">
-                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                <i class="bi bi-clipboard"></i>
-                            </button>
-                            mvn clean package
+                            <i class="bi bi-info-circle-fill text-info me-2"></i>
+                            <strong>Alternative:</strong> If you prefer, you can download from <a href="https://cursor.sh" target="_blank" style="color: #667eea; font-weight: bold; text-decoration: none;">cursor.sh</a>
                         </div>
                         <div class="success-card">
                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                            <strong>Verify installation:</strong> Type <code>cursor --version</code> in Terminal
                         </div>
                     </div>
 
-                    <!-- Step 3 -->
+                    <!-- Step 4 -->
                     <div class="step-card fade-in">
-                        <div class="step-number">3</div>
-                        <h4>Configurar el Agente</h4>
-                        <p>Cursor o Claude Desktop.</p>
+                        <div class="step-number">4</div>
+                        <h4>Configure MCP Servers in Cursor</h4>
+                        <p>Open Cursor settings and configure the MCP servers in the configuration JSON.</p>
                         <div class="warning-card">
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                            <strong>Importante:</strong> En macOS, usa la ruta completa comenzando desde /Users/tu-usuario.
+                            <strong>Location:</strong> <code>~/Library/Application Support/Cursor/User/globalStorage/cursor.settings/settings.json</code>
                         </div>
+                        <p><strong>Steps to configure:</strong></p>
+                        <ol class="ps-3">
+                            <li>Open Cursor</li>
+                            <li>Press <kbd>⌘+Shift+P</kbd> and search for "Preferences: Open Settings (JSON)"</li>
+                            <li>Add the following MCP servers configuration:</li>
+                        </ol>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
@@ -857,7 +929,7 @@
                         &nbsp;&nbsp;"mcpServers": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/Users/tu-usuario/ruta/completa/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/Users/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
@@ -866,40 +938,48 @@
                         &nbsp;&nbsp;}<br/>
                         }
                         </div>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Important:</strong> Replace <code>/Users/your-username/path/to/project</code> with your actual project path.
+                        </div>
                     </div>
 
-                    <!-- Step 4 -->
+                    <!-- Step 5 -->
                     <div class="step-card fade-in">
-                        <div class="step-number">4</div>
-                        <h4>Verificar Conectividad</h4>
-                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <div class="step-number">5</div>
+                        <h4>Verify Connectivity</h4>
+                        <p>Restart Cursor and test that both MCP servers are working correctly.</p>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <h6>Lippia MCP Server</h6>
+                                <h6>Lippia MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- create_feature<br/>
-- create_test<br/>
-- execute_test<br/>
-- get_report<br/>
+- mcp_lippia_create_feature<br/>
+- mcp_lippia_create_test<br/>
+- mcp_lippia_execute_test<br/>
+- mcp_lippia_get_report<br/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h6>Selenium MCP Server</h6>
+                                <h6>Selenium MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- start_browser<br/>
-- navigate<br/>
-- find_element<br/>
-- click_element<br/>
-- send_keys<br/>
-- screenshot<br/>
+- mcp_selenium_start_browser<br/>
+- mcp_selenium_navigate<br/>
+- mcp_selenium_find_element<br/>
+- mcp_selenium_click_element<br/>
+- mcp_selenium_send_keys<br/>
+- mcp_selenium_take_screenshot<br/>
                                 </div>
                             </div>
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Test:</strong> In Cursor chat, type: "Show me available MCP tools" to verify both servers are connected.
                         </div>
                     </div>
                 </div>
@@ -910,21 +990,25 @@
                     <!-- Step 1 -->
                     <div class="step-card fade-in">
                         <div class="step-number">1</div>
-                        <h4>Clonar el Repositorio</h4>
-                        <p>Descarga el código fuente del proyecto desde el repositorio.</p>
+                        <h4>Clone the Repository</h4>
+                        <p>Open Terminal and clone the Lippia MCP Server project.</p>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
                             git clone https://gitlab.crowdaronline.com/lippia/products/lippia-framework/mcp-server/lippia-mcp-server.git && cd "$(basename "$_" .git)"
                         </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Expected result:</strong> Project cloned successfully and you're now in the project directory.
+                        </div>
                     </div>
 
                     <!-- Step 2 -->
                     <div class="step-card fade-in">
                         <div class="step-number">2</div>
-                        <h4>Compilar el Proyecto</h4>
-                        <p>Utiliza Maven para compilar y empaquetar el servidor MCP de Lippia.</p>
+                        <h4>Compile the Project</h4>
+                        <p>Use Maven to compile and package the Lippia MCP server.</p>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
@@ -933,19 +1017,71 @@
                         </div>
                         <div class="success-card">
                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                            <strong>Resultado esperado:</strong> Se genera el archivo <code>target/mcp-server-1.0-SNAPSHOT.jar</code>
+                            <strong>Expected result:</strong> The file <code>target/mcp-server-1.0-SNAPSHOT.jar</code> is generated
                         </div>
                     </div>
 
                     <!-- Step 3 -->
                     <div class="step-card fade-in">
                         <div class="step-number">3</div>
-                        <h4>Configurar el Agente</h4>
-                        <p>Cursor o Claude Desktop.</p>
+                        <h4>Install Cursor via CLI</h4>
+                        <p>Install Cursor AI Editor using your preferred package manager.</p>
+                        
+                        <h6 class="mt-3">Option 1: Ubuntu/Debian (APT)</h6>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            # Download and install Cursor<br/>
+                            wget -qO- https://download.todesktop.com/200823hxqfhhbr/linux | sudo apt-key add -<br/>
+                            echo "deb [arch=amd64] https://download.todesktop.com/200823hxqfhhbr/linux/ stable main" | sudo tee /etc/apt/sources.list.d/cursor.list<br/>
+                            sudo apt update && sudo apt install cursor
+                        </div>
+
+                        <h6 class="mt-3">Option 2: Snap Package (Universal)</h6>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            sudo snap install cursor --classic
+                        </div>
+
+                        <h6 class="mt-3">Option 3: AppImage (Portable)</h6>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                            # Download AppImage from cursor.sh<br/>
+                            wget https://downloader.cursor.sh/linux/appImage/x64 -O cursor.AppImage<br/>
+                            chmod +x cursor.AppImage<br/>
+                            ./cursor.AppImage
+                        </div>
+
+                        <div class="warning-card">
+                            <i class="bi bi-info-circle-fill text-info me-2"></i>
+                            <strong>Alternative:</strong> You can also download from <a href="https://cursor.sh" target="_blank" style="color: #667eea; font-weight: bold; text-decoration: none;">cursor.sh</a>
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Verify installation:</strong> Type <code>cursor --version</code> in Terminal
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h4>Configure MCP Servers in Cursor</h4>
+                        <p>Open Cursor settings and configure the MCP servers in the configuration JSON.</p>
                         <div class="warning-card">
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                            <strong>Importante:</strong> En Linux, usa la ruta completa comenzando desde /home/tu-usuario.
+                            <strong>Location:</strong> <code>~/.config/Cursor/User/globalStorage/cursor.settings/settings.json</code>
                         </div>
+                        <p><strong>Steps to configure:</strong></p>
+                        <ol class="ps-3">
+                            <li>Open Cursor</li>
+                            <li>Press <kbd>Ctrl+Shift+P</kbd> and search for "Preferences: Open Settings (JSON)"</li>
+                            <li>Add the following MCP servers configuration:</li>
+                        </ol>
                         <div class="code-block">
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
@@ -954,7 +1090,7 @@
                         &nbsp;&nbsp;"mcpServers": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/tu-usuario/ruta/completa/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
@@ -963,40 +1099,48 @@
                         &nbsp;&nbsp;}<br/>
                         }
                         </div>
+                        <div class="warning-card">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            <strong>Important:</strong> Replace <code>/home/your-username/path/to/project</code> with your actual project path.
+                        </div>
                     </div>
 
-                    <!-- Step 4 -->
+                    <!-- Step 5 -->
                     <div class="step-card fade-in">
-                        <div class="step-number">4</div>
-                        <h4>Verificar Conectividad</h4>
-                        <p>Prueba que ambos servidores MCP estén funcionando correctamente.</p>
+                        <div class="step-number">5</div>
+                        <h4>Verify Connectivity</h4>
+                        <p>Restart Cursor and test that both MCP servers are working correctly.</p>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <h6>Lippia MCP Server</h6>
+                                <h6>Lippia MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- create_feature<br/>
-- create_test<br/>
-- execute_test<br/>
-- get_report<br/>
+- mcp_lippia_create_feature<br/>
+- mcp_lippia_create_test<br/>
+- mcp_lippia_execute_test<br/>
+- mcp_lippia_get_report<br/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h6>Selenium MCP Server</h6>
+                                <h6>Selenium MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- start_browser<br/>
-- navigate<br/>
-- find_element<br/>
-- click_element<br/>
-- send_keys<br/>
-- screenshot<br/>
+- mcp_selenium_start_browser<br/>
+- mcp_selenium_navigate<br/>
+- mcp_selenium_find_element<br/>
+- mcp_selenium_click_element<br/>
+- mcp_selenium_send_keys<br/>
+- mcp_selenium_take_screenshot<br/>
                                 </div>
                             </div>
+                        </div>
+                        <div class="success-card">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Test:</strong> In Cursor chat, type: "Show me available MCP tools" to verify both servers are connected.
                         </div>
                     </div>
                 </div>
