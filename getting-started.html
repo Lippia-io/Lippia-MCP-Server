@@ -16,7 +16,7 @@
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --lippia-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --selenium-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --playwright-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
             --ai-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
@@ -252,7 +252,7 @@
         [data-theme="dark"] {
             --primary-gradient: linear-gradient(135deg, #8b5fbf 0%, #5a3d99 100%);
             --lippia-gradient: linear-gradient(135deg, #6a9bdc 0%, #4a7ba7 100%);
-            --selenium-gradient: linear-gradient(135deg, #d66d75 0%, #b5533e 100%);
+            --playwright-gradient: linear-gradient(135deg, #d66d75 0%, #b5533e 100%);
             --ai-gradient: linear-gradient(135deg, #7eb3a3 0%, #5d8aa8 100%);
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.3);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.4);
@@ -791,9 +791,9 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "C:\\path\\to\\your\\project\\target\\mcp-server-1.0-SNAPSHOT.jar"]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
                         &nbsp;&nbsp;}<br/>
                         }
@@ -823,17 +823,34 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h6>Selenium MCP Server Tools</h6>
+                                <h6>Playwright MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- mcp_selenium_start_browser<br/>
-- mcp_selenium_navigate<br/>
-- mcp_selenium_find_element<br/>
-- mcp_selenium_click_element<br/>
-- mcp_selenium_send_keys<br/>
-- mcp_selenium_take_screenshot<br/>
+- mcp_playwright_browser_click<br/>
+- mcp_playwright_browser_snapshot<br/>
+- mcp_playwright_browser_take_screenshot<br/>
+- mcp_playwright_browser_close<br/>
+- mcp_playwright_browser_resize<br/>
+- mcp_playwright_browser_type<br/>
+- mcp_playwright_browser_hover<br/>
+- mcp_playwright_browser_drag<br/>
+- mcp_playwright_browser_select_option<br/>
+- mcp_playwright_browser_press_key<br/>
+- mcp_playwright_browser_file_upload<br/>
+- mcp_playwright_browser_handle_dialog<br/>
+- mcp_playwright_browser_navigate_back<br/>
+- mcp_playwright_browser_navigate_forward<br/>
+- mcp_playwright_browser_tab_list<br/>
+- mcp_playwright_browser_tab_new<br/>
+- mcp_playwright_browser_tab_select<br/>
+- mcp_playwright_browser_tab_close<br/>
+- mcp_playwright_browser_console_messages<br/>
+- mcp_playwright_browser_network_requests<br/>
+- mcp_playwright_browser_pdf_save<br/>
+- mcp_playwright_browser_wait_for<br/>
+- mcp_playwright_browser_generate_playwright_test<br/>
                                 </div>
                             </div>
                         </div>
@@ -931,9 +948,9 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/Users/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
                         &nbsp;&nbsp;}<br/>
                         }
@@ -963,17 +980,34 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h6>Selenium MCP Tools</h6>
+                                <h6>Playwright MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- mcp_selenium_start_browser<br/>
-- mcp_selenium_navigate<br/>
-- mcp_selenium_find_element<br/>
-- mcp_selenium_click_element<br/>
-- mcp_selenium_send_keys<br/>
-- mcp_selenium_take_screenshot<br/>
+- mcp_playwright_browser_click<br/>
+- mcp_playwright_browser_snapshot<br/>
+- mcp_playwright_browser_take_screenshot<br/>
+- mcp_playwright_browser_close<br/>
+- mcp_playwright_browser_resize<br/>
+- mcp_playwright_browser_type<br/>
+- mcp_playwright_browser_hover<br/>
+- mcp_playwright_browser_drag<br/>
+- mcp_playwright_browser_select_option<br/>
+- mcp_playwright_browser_press_key<br/>
+- mcp_playwright_browser_file_upload<br/>
+- mcp_playwright_browser_handle_dialog<br/>
+- mcp_playwright_browser_navigate_back<br/>
+- mcp_playwright_browser_navigate_forward<br/>
+- mcp_playwright_browser_tab_list<br/>
+- mcp_playwright_browser_tab_new<br/>
+- mcp_playwright_browser_tab_select<br/>
+- mcp_playwright_browser_tab_close<br/>
+- mcp_playwright_browser_console_messages<br/>
+- mcp_playwright_browser_network_requests<br/>
+- mcp_playwright_browser_pdf_save<br/>
+- mcp_playwright_browser_wait_for<br/>
+- mcp_playwright_browser_generate_playwright_test<br/>
                                 </div>
                             </div>
                         </div>
@@ -1092,9 +1126,9 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"selenium": {<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "-y", "@angiejones/mcp-selenium" ]<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
                         &nbsp;&nbsp;}<br/>
                         }
@@ -1124,17 +1158,34 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h6>Selenium MCP Tools</h6>
+                                <h6>Playwright MCP Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
-- mcp_selenium_start_browser<br/>
-- mcp_selenium_navigate<br/>
-- mcp_selenium_find_element<br/>
-- mcp_selenium_click_element<br/>
-- mcp_selenium_send_keys<br/>
-- mcp_selenium_take_screenshot<br/>
+- mcp_playwright_browser_click<br/>
+- mcp_playwright_browser_snapshot<br/>
+- mcp_playwright_browser_take_screenshot<br/>
+- mcp_playwright_browser_close<br/>
+- mcp_playwright_browser_resize<br/>
+- mcp_playwright_browser_type<br/>
+- mcp_playwright_browser_hover<br/>
+- mcp_playwright_browser_drag<br/>
+- mcp_playwright_browser_select_option<br/>
+- mcp_playwright_browser_press_key<br/>
+- mcp_playwright_browser_file_upload<br/>
+- mcp_playwright_browser_handle_dialog<br/>
+- mcp_playwright_browser_navigate_back<br/>
+- mcp_playwright_browser_navigate_forward<br/>
+- mcp_playwright_browser_tab_list<br/>
+- mcp_playwright_browser_tab_new<br/>
+- mcp_playwright_browser_tab_select<br/>
+- mcp_playwright_browser_tab_close<br/>
+- mcp_playwright_browser_console_messages<br/>
+- mcp_playwright_browser_network_requests<br/>
+- mcp_playwright_browser_pdf_save<br/>
+- mcp_playwright_browser_wait_for<br/>
+- mcp_playwright_browser_generate_playwright_test<br/>
                                 </div>
                             </div>
                         </div>

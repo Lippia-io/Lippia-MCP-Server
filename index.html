@@ -16,7 +16,7 @@
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --lippia-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --selenium-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --playwright-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
             --ai-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
@@ -72,7 +72,7 @@
             background: linear-gradient(135deg, rgba(111, 186, 110, 0.05) 0%, rgba(111, 186, 110, 0.08) 100%);
         }
         
-        .card-selenium {
+        .card-playwright {
             border-left: 5px solid #fa709a;
             background: linear-gradient(135deg, rgba(250, 112, 154, 0.05) 0%, rgba(254, 225, 64, 0.05) 100%);
         }
@@ -104,8 +104,8 @@
             background: var(--lippia-gradient);
         }
         
-        .tool-badge-selenium {
-            background: var(--selenium-gradient);
+        .tool-badge-playwright {
+            background: var(--playwright-gradient);
         }
         
         .section-title {
@@ -142,8 +142,8 @@
             background: var(--lippia-gradient);
         }
         
-        .icon-selenium {
-            background: var(--selenium-gradient);
+        .icon-playwright {
+            background: var(--playwright-gradient);
         }
         
         .icon-ai {
@@ -289,7 +289,7 @@
             background: linear-gradient(135deg, rgba(79, 172, 254, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%);
         }
         
-        .selenium-tool-card {
+        .playwright-tool-card {
             border-left: 4px solid #fa709a;
             background: linear-gradient(135deg, rgba(250, 112, 154, 0.05) 0%, rgba(254, 225, 64, 0.05) 100%);
         }
@@ -426,7 +426,7 @@
         [data-theme="dark"] {
             --primary-gradient: linear-gradient(135deg, #8b5fbf 0%, #5a3d99 100%);
             --lippia-gradient: linear-gradient(135deg, #6a9bdc 0%, #4a7ba7 100%);
-            --selenium-gradient: linear-gradient(135deg, #d66d75 0%, #b5533e 100%);
+            --playwright-gradient: linear-gradient(135deg, #d66d75 0%, #b5533e 100%);
             --ai-gradient: linear-gradient(135deg, #7eb3a3 0%, #5d8aa8 100%);
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.3);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.4);
@@ -904,7 +904,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <p class="fs-5">
-                            Combining <strong>Lippia Testing Tools</strong> with <strong>Selenium Browser Automation</strong> 
+                            Combining <strong>Lippia Testing Tools</strong> with <strong>Playwright Browser Automation</strong> 
                             to create an intelligent and autonomous testing ecosystem.
                         </p>
                     </div>
@@ -1022,11 +1022,11 @@
                     </div>
                 </div>
                 
-                <!-- Selenium MCP Server -->
+                <!-- Playwright MCP Server -->
                 <div class="col-lg-6">
-                    <div class="card card-modern card-selenium h-100">
+                    <div class="card card-modern card-playwright h-100">
                         <div class="card-header bg-transparent border-0 text-center pb-2">
-                            <h4 class="mb-0" style="color: #fa709a; font-weight: bold;">Selenium MCP Server</h4>
+                            <h4 class="mb-0" style="color: #fa709a; font-weight: bold;">Playwright MCP Server</h4>
                             <p class="text-muted small mb-0">Autonomous Navigation</p>
                         </div>
                         <div class="card-body pt-3">
@@ -1038,9 +1038,9 @@
                                 </div>
                                 <div class="layer-content">
                                     <div class="tech-stack">
-                                        <span class="tech-item">Selenium Core</span>
+                                        <span class="tech-item">Playwright Core</span>
                                         <span class="tech-item">MCP Protocol</span>
-                                        <span class="tech-item">WebDriver Manager</span>
+                                        <span class="tech-item">Browser Manager</span>
                                     </div>
                                 </div>
                             </div>
@@ -1054,19 +1054,19 @@
                                     <div class="tools-grid">
                                         <div class="tool-item">
                                             <strong>Browser Control</strong>
-                                            <span>start_browser • navigate • screenshot</span>
+                                            <span>browser_navigate • browser_snapshot • browser_take_screenshot</span>
                                         </div>
                                         <div class="tool-item">
                                             <strong>Element Interaction</strong>
-                                            <span>find_element • click_element • send_keys</span>
+                                            <span>browser_click • browser_type • browser_hover</span>
                                         </div>
                                         <div class="tool-item">
                                             <strong>Advanced Actions</strong>
-                                            <span>drag_drop • hover • upload_file</span>
+                                            <span>browser_drag • browser_select_option • browser_file_upload</span>
                                         </div>
                                         <div class="tool-item">
                                             <strong>Data Extraction</strong>
-                                            <span>get_text • capture_screenshot</span>
+                                            <span>browser_console_messages • browser_network_requests</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1081,7 +1081,7 @@
                                     <div class="support-systems">
                                         <div class="support-group">
                                             <div class="support-title">Browsers</div>
-                                            <div class="support-items">Chrome • Firefox • WebDriver</div>
+                                            <div class="support-items">Chrome • Firefox • Safari • Edge</div>
                                         </div>
                                         <div class="support-group">
                                             <div class="support-title">Sessions</div>
@@ -1202,25 +1202,25 @@
                     </div>
                 </div>
 
-                <!-- Selenium MCP Server -->
+                <!-- Playwright MCP Server -->
                 <div class="col-lg-4">
-                    <div class="card card-modern card-selenium h-100 fade-in">
+                    <div class="card card-modern card-playwright h-100 fade-in">
                         <div class="card-body text-center">
-                            <div class="feature-icon icon-selenium">
+                            <div class="feature-icon icon-playwright">
                                 <i class="bi bi-globe"></i>
                             </div>
-                            <h4 class="card-title">Selenium MCP Server</h4>
+                            <h4 class="card-title">Playwright MCP Server</h4>
                             <p class="card-text">
                                 Web automation server for autonomous navigation, 
                                 element interaction, and data capture.
                             </p>
                             <div class="mt-3">
-                                <span class="tool-badge tool-badge-selenium">start_browser</span>
-                                <span class="tool-badge tool-badge-selenium">navigate</span>
-                                <span class="tool-badge tool-badge-selenium">find_element</span>
-                                <span class="tool-badge tool-badge-selenium">click_element</span>
-                                <span class="tool-badge tool-badge-selenium">send_keys</span>
-                                <span class="tool-badge tool-badge-selenium">screenshot</span>
+                                <span class="tool-badge tool-badge-playwright">browser_navigate</span>
+                                <span class="tool-badge tool-badge-playwright">browser_snapshot</span>
+                                <span class="tool-badge tool-badge-playwright">browser_click</span>
+                                <span class="tool-badge tool-badge-playwright">browser_type</span>
+                                <span class="tool-badge tool-badge-playwright">browser_hover</span>
+                                <span class="tool-badge tool-badge-playwright">browser_take_screenshot</span>
                             </div>
                         </div>
                     </div>
@@ -1241,7 +1241,7 @@
                         <p class="small">User provides user stories to automate</p>
                     </div>
                     <div class="col-lg-2 col-md-4 flow-step">
-                        <div class="feature-icon icon-selenium">
+                        <div class="feature-icon icon-playwright">
                             <i class="bi bi-compass"></i>
                         </div>
                         <h6>Autonomous Navigation</h6>
@@ -1322,7 +1322,7 @@
                     <div class="stats-card">
                         <div class="stats-number">14</div>
                         <h6 class="text-muted">Available Tools</h6>
-                        <p class="small">4 Lippia + 10 Selenium</p>
+                        <p class="small">4 Lippia + 30+ Playwright</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -1363,7 +1363,7 @@
                                 <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>Backend:</strong> Java 17+, Spring Boot, Maven</li>
                                 <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>MCP Java SDK:</strong> Model Context Protocol</li>
                                 <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>Automation:</strong> Lippia Framework</li>
-                                <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>Browser:</strong> Selenium WebDriver</li>
+                                <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>Browser:</strong> Playwright Engine</li>
                                 <li class="mb-2"><i class="bi bi-dot text-primary"></i><strong>Transport:</strong> StdIO</li>
                             </ul>
                         </div>
