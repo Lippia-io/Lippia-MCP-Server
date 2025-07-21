@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "title": "Get Page Title",
+  "description": "Obtiene el título de la página actual.",
+  "properties": {},
+  "required": []
+} 
