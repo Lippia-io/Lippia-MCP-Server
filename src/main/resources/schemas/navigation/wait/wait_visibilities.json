@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "title": "Espera a que más de un elemento sean encontrados",
+  "properties": {
+    "by": {
+      "type": "string",
+      "enum": ["css", "xpath", "id", "name", "class", "tag", "accessibility_id", "android_ui_automator", "ios_ns_predicate", "custom", "image"],
+      "description": "El tipo de selector a utilizar"
+    },
+    "selector": {
+      "type": "string",
+      "description": "El selector de los elementos"
+    }
+  },
+  "required": ["by", "selector"]
+}

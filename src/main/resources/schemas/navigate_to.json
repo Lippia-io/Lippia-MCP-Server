@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "title": "Navigate To",
+  "description": "Navega a una URL usando el driver abierto.",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "La URL a la que navegar"
+    }
+  },
+  "required": ["url"]
+} 
