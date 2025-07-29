@@ -1,7 +1,7 @@
 {
   "type": "object",
   "title": "Get Page Title",
-  "description": "Obtiene el título de la página actual.",
+  "description": "Gets the title of the current page.",
   "properties": {},
   "required": []
 } 

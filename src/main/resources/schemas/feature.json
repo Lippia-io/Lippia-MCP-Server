@@ -3,7 +3,7 @@
   "properties": {
     "userStory": {
       "type":"string",
-      "description": "User story para generar feature files"
+      "description": "User story to generate feature files"
     }
   },
   "required":["userStory"]

@@ -1,7 +1,7 @@
 {
   "type": "object",
   "title": "Get Current URL",
-  "description": "Obtiene la URL actual del navegador.",
+  "description": "Gets the current URL from the browser.",
   "properties": {},
   "required": []
 } 

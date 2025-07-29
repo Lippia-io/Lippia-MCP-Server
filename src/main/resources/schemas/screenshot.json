@@ -1,11 +1,11 @@
 {
   "type": "object",
   "title": "Take Screenshot",
-  "description": "Toma una captura de pantalla y la guarda en un archivo.",
+  "description": "Takes a screenshot and saves it to a file.",
   "properties": {
     "filename": {
       "type": "string",
-      "description": "Nombre del archivo para guardar la captura (opcional, por defecto: screenshot_timestamp.png)"
+      "description": "Filename to save the screenshot (optional, default: screenshot_timestamp.png)"
     }
   },
   "required": []

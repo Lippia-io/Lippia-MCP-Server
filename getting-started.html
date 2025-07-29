@@ -660,15 +660,15 @@
                 <div class="col-lg-4">
                     <div class="prerequisite-card">
                         <h5><i class="bi bi-cup-hot me-2"></i>Java Development Kit</h5>
-                        <p class="mb-2"><strong>Versión:</strong> Java 17 o superior</p>
-                        <p class="mb-0"><strong>Verificar:</strong> <code>java --version</code></p>
+                        <p class="mb-2"><strong>Version:</strong> Java 17 or higher</p>
+                        <p class="mb-0"><strong>Verify:</strong> <code>java --version</code></p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="prerequisite-card">
                         <h5><i class="bi bi-archive me-2"></i>Apache Maven</h5>
-                        <p class="mb-2"><strong>Versión:</strong> Maven 3.8+ recomendado</p>
-                        <p class="mb-0"><strong>Verificar:</strong> <code>mvn --version</code></p>
+                        <p class="mb-2"><strong>Version:</strong> Maven 3.8+ recommended</p>
+                        <p class="mb-0"><strong>Verify:</strong> <code>mvn --version</code></p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -785,18 +785,14 @@
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
-                        {<br/>
-                        &nbsp;&nbsp;"mcpServers": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "C:\\path\\to\\your\\project\\target\\mcp-server-1.0-SNAPSHOT.jar"]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;}<br/>
-                        }
+                            {<br/>
+                                &nbsp;&nbsp;"mcpServers": {<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                                &nbsp;&nbsp;}<br/>
+                                }
                         </div>
                         <div class="warning-card">
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
@@ -816,41 +812,38 @@
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
+# Building & Reporting<br/>
 - mcp_lippia_create_feature<br/>
 - mcp_lippia_create_test<br/>
 - mcp_lippia_execute_test<br/>
 - mcp_lippia_get_report<br/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Playwright MCP Tools</h6>
-                                <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-- mcp_playwright_browser_click<br/>
-- mcp_playwright_browser_snapshot<br/>
-- mcp_playwright_browser_take_screenshot<br/>
-- mcp_playwright_browser_close<br/>
-- mcp_playwright_browser_resize<br/>
-- mcp_playwright_browser_type<br/>
-- mcp_playwright_browser_hover<br/>
-- mcp_playwright_browser_drag<br/>
-- mcp_playwright_browser_select_option<br/>
-- mcp_playwright_browser_press_key<br/>
-- mcp_playwright_browser_file_upload<br/>
-- mcp_playwright_browser_handle_dialog<br/>
-- mcp_playwright_browser_navigate_back<br/>
-- mcp_playwright_browser_navigate_forward<br/>
-- mcp_playwright_browser_tab_list<br/>
-- mcp_playwright_browser_tab_new<br/>
-- mcp_playwright_browser_tab_select<br/>
-- mcp_playwright_browser_tab_close<br/>
-- mcp_playwright_browser_console_messages<br/>
-- mcp_playwright_browser_network_requests<br/>
-- mcp_playwright_browser_pdf_save<br/>
-- mcp_playwright_browser_wait_for<br/>
-- mcp_playwright_browser_generate_playwright_test<br/>
+<br/>
+# Navigation & Actions<br/>
+- mcp_lippia_open_browser<br/>
+- mcp_lippia_close_browser<br/>
+- mcp_lippia_navigate_to<br/>
+- mcp_lippia_click<br/>
+- mcp_lippia_type<br/>
+- mcp_lippia_get_text<br/>
+- mcp_lippia_get_page_title<br/>
+- mcp_lippia_get_page_source<br/>
+- mcp_lippia_get_current_url<br/>
+- mcp_lippia_screenshot<br/>
+<br/>
+# Waits<br/>
+- mcp_lippia_wait_clickable<br/>
+- mcp_lippia_wait_visibility<br/>
+- mcp_lippia_wait_visibilities<br/>
+- mcp_lippia_wait_invisibility<br/>
+- mcp_lippia_wait_invisibilities<br/>
+- mcp_lippia_wait_presence<br/>
+- mcp_lippia_wait_presences<br/>
+<br/>
+# Verifications<br/>
+- mcp_lippia_is_enabled<br/>
+- mcp_lippia_is_selected<br/>
+- mcp_lippia_is_present<br/>
+- mcp_lippia_is_visible<br/>
                                 </div>
                             </div>
                         </div>
@@ -942,18 +935,14 @@
                             <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                 <i class="bi bi-clipboard"></i>
                             </button>
-                        {<br/>
-                        &nbsp;&nbsp;"mcpServers": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/Users/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;}<br/>
-                        }
+                            {<br/>
+                                &nbsp;&nbsp;"mcpServers": {<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+                                &nbsp;&nbsp;}<br/>
+                                }
                         </div>
                         <div class="warning-card">
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
@@ -968,46 +957,43 @@
                         <p>Restart Cursor and test that both MCP servers are working correctly.</p>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <h6>Lippia MCP Tools</h6>
+                                <h6>Lippia MCP Server Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
+# Building & Reporting<br/>
 - mcp_lippia_create_feature<br/>
 - mcp_lippia_create_test<br/>
 - mcp_lippia_execute_test<br/>
 - mcp_lippia_get_report<br/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Playwright MCP Tools</h6>
-                                <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-- mcp_playwright_browser_click<br/>
-- mcp_playwright_browser_snapshot<br/>
-- mcp_playwright_browser_take_screenshot<br/>
-- mcp_playwright_browser_close<br/>
-- mcp_playwright_browser_resize<br/>
-- mcp_playwright_browser_type<br/>
-- mcp_playwright_browser_hover<br/>
-- mcp_playwright_browser_drag<br/>
-- mcp_playwright_browser_select_option<br/>
-- mcp_playwright_browser_press_key<br/>
-- mcp_playwright_browser_file_upload<br/>
-- mcp_playwright_browser_handle_dialog<br/>
-- mcp_playwright_browser_navigate_back<br/>
-- mcp_playwright_browser_navigate_forward<br/>
-- mcp_playwright_browser_tab_list<br/>
-- mcp_playwright_browser_tab_new<br/>
-- mcp_playwright_browser_tab_select<br/>
-- mcp_playwright_browser_tab_close<br/>
-- mcp_playwright_browser_console_messages<br/>
-- mcp_playwright_browser_network_requests<br/>
-- mcp_playwright_browser_pdf_save<br/>
-- mcp_playwright_browser_wait_for<br/>
-- mcp_playwright_browser_generate_playwright_test<br/>
+<br/>
+# Navigation & Actions<br/>
+- mcp_lippia_open_browser<br/>
+- mcp_lippia_close_browser<br/>
+- mcp_lippia_navigate_to<br/>
+- mcp_lippia_click<br/>
+- mcp_lippia_type<br/>
+- mcp_lippia_get_text<br/>
+- mcp_lippia_get_page_title<br/>
+- mcp_lippia_get_page_source<br/>
+- mcp_lippia_get_current_url<br/>
+- mcp_lippia_screenshot<br/>
+<br/>
+# Waits<br/>
+- mcp_lippia_wait_clickable<br/>
+- mcp_lippia_wait_visibility<br/>
+- mcp_lippia_wait_visibilities<br/>
+- mcp_lippia_wait_invisibility<br/>
+- mcp_lippia_wait_invisibilities<br/>
+- mcp_lippia_wait_presence<br/>
+- mcp_lippia_wait_presences<br/>
+<br/>
+# Verifications<br/>
+- mcp_lippia_is_enabled<br/>
+- mcp_lippia_is_selected<br/>
+- mcp_lippia_is_present<br/>
+- mcp_lippia_is_visible<br/>
                                 </div>
                             </div>
                         </div>
@@ -1125,10 +1111,6 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;"lippia": {<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "java",<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": ["-jar", "/home/your-username/path/to/project/target/mcp-server-1.0-SNAPSHOT.jar"]<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"playwright": {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"command": "npx",<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"args": [ "@playwright/mcp@latest" ]<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
                         &nbsp;&nbsp;}<br/>
                         }
@@ -1146,46 +1128,43 @@
                         <p>Restart Cursor and test that both MCP servers are working correctly.</p>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <h6>Lippia MCP Tools</h6>
+                                <h6>Lippia MCP Server Tools</h6>
                                 <div class="code-block">
                                     <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                         <i class="bi bi-clipboard"></i>
                                     </button>
+# Building & Reporting<br/>
 - mcp_lippia_create_feature<br/>
 - mcp_lippia_create_test<br/>
 - mcp_lippia_execute_test<br/>
 - mcp_lippia_get_report<br/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Playwright MCP Tools</h6>
-                                <div class="code-block">
-                                    <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-- mcp_playwright_browser_click<br/>
-- mcp_playwright_browser_snapshot<br/>
-- mcp_playwright_browser_take_screenshot<br/>
-- mcp_playwright_browser_close<br/>
-- mcp_playwright_browser_resize<br/>
-- mcp_playwright_browser_type<br/>
-- mcp_playwright_browser_hover<br/>
-- mcp_playwright_browser_drag<br/>
-- mcp_playwright_browser_select_option<br/>
-- mcp_playwright_browser_press_key<br/>
-- mcp_playwright_browser_file_upload<br/>
-- mcp_playwright_browser_handle_dialog<br/>
-- mcp_playwright_browser_navigate_back<br/>
-- mcp_playwright_browser_navigate_forward<br/>
-- mcp_playwright_browser_tab_list<br/>
-- mcp_playwright_browser_tab_new<br/>
-- mcp_playwright_browser_tab_select<br/>
-- mcp_playwright_browser_tab_close<br/>
-- mcp_playwright_browser_console_messages<br/>
-- mcp_playwright_browser_network_requests<br/>
-- mcp_playwright_browser_pdf_save<br/>
-- mcp_playwright_browser_wait_for<br/>
-- mcp_playwright_browser_generate_playwright_test<br/>
+<br/>
+# Navigation & Actions<br/>
+- mcp_lippia_open_browser<br/>
+- mcp_lippia_close_browser<br/>
+- mcp_lippia_navigate_to<br/>
+- mcp_lippia_click<br/>
+- mcp_lippia_type<br/>
+- mcp_lippia_get_text<br/>
+- mcp_lippia_get_page_title<br/>
+- mcp_lippia_get_page_source<br/>
+- mcp_lippia_get_current_url<br/>
+- mcp_lippia_screenshot<br/>
+<br/>
+# Waits<br/>
+- mcp_lippia_wait_clickable<br/>
+- mcp_lippia_wait_visibility<br/>
+- mcp_lippia_wait_visibilities<br/>
+- mcp_lippia_wait_invisibility<br/>
+- mcp_lippia_wait_invisibilities<br/>
+- mcp_lippia_wait_presence<br/>
+- mcp_lippia_wait_presences<br/>
+<br/>
+# Verifications<br/>
+- mcp_lippia_is_enabled<br/>
+- mcp_lippia_is_selected<br/>
+- mcp_lippia_is_present<br/>
+- mcp_lippia_is_visible<br/>
                                 </div>
                             </div>
                         </div>
@@ -1217,45 +1196,45 @@
                                 <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                                     <i class="bi bi-clipboard"></i>
                                 </button>
-                                Hola, por favor, seguí los siguientes pasos:<br/><br/>
+                                Hello, please follow these steps:<br/><br/>
 
-                                1. Leer y entender la User Story propuesta<br/><br/>
+                                1. Read and understand the proposed User Story<br/><br/>
                                 
-                                User Story: Compra exitosa de un producto en SauceDemo<br/>
-                                Título: Como usuario logueado, quiero poder comprar un producto de forma exitosa para completar mi pedido y recibirlo.<br/><br/>
+                                User Story: Successful Product Purchase on SauceDemo<br/>
+                                Title: As a logged-in user, I want to be able to successfully purchase a product to complete my order and receive it.<br/><br/>
                                 
-                                Criterios de aceptación:<br/><br/>
+                                Acceptance Criteria:<br/><br/>
                                 
-                                - El usuario debe poder iniciar sesión con credenciales válidas.<br/>
-                                - El usuario debe poder agregar al menos un producto al carrito desde la tienda.<br/>
-                                - El usuario debe poder acceder al carrito y verificar los productos seleccionados.<br/>
-                                - El usuario debe poder proceder al checkout e ingresar su información personal (nombre, apellido, código postal).<br/>
-                                - El usuario debe poder continuar al resumen de la orden y confirmar la compra.<br/>
-                                - Al finalizar, el sistema debe mostrar un mensaje de confirmación de compra exitosa: "THANK YOU FOR YOUR ORDER".<br/><br/>
+                                - The user must be able to log in with valid credentials.<br/>
+                                - The user must be able to add at least one product to the cart from the store.<br/>
+                                - The user must be able to access the cart and verify the selected products.<br/>
+                                - The user must be able to proceed to checkout and enter personal information (name, surname, postal code).<br/>
+                                - The user must be able to continue to the order summary and confirm the purchase.<br/>
+                                - Upon completion, the system must display a successful purchase confirmation message: "THANK YOU FOR YOUR ORDER".<br/><br/>
                                 
-                                Escenario de prueba (Happy Path):<br/><br/>
+                                Test Scenario (Happy Path):<br/><br/>
                                 
-                                - Ir a https://www.saucedemo.com.<br/>
-                                - Iniciar sesión como standard_user / secret_sauce.<br/>
-                                - Agregar el producto “Sauce Labs Backpack” al carrito.<br/>
-                                - Ir al carrito y hacer clic en Checkout.<br/><br/>
+                                - Navigate to https://www.saucedemo.com.<br/>
+                                - Log in as standard_user / secret_sauce.<br/>
+                                - Add the "Sauce Labs Backpack" product to the cart.<br/>
+                                - Go to the cart and click on Checkout.<br/><br/>
                                 
-                                Completar los datos personales:<br/><br/>
+                                Complete the personal information:<br/><br/>
                                 
                                 - First Name: John<br/>
                                 - Last Name: Doe<br/>
                                 - Zip Code: 12345<br/><br/>
                                 
-                                - Hacer clic en Continue y luego en Finish.<br/>
-                                - Verificar el mensaje de confirmación de compra.<br/><br/>
+                                - Click on Continue and then on Finish.<br/>
+                                - Verify the purchase confirmation message.<br/><br/>
                                 
-                                2. Abrí Chrome en modo normal (no headless) y navega hacia la página para conocer el flujo y mapear las acciones que realices sobre la aplicación.<br/>
-                                3. Genera los feature files basados en la User Story apoyándote en la navegación que hiciste previamente.<br/>
-                                4. Crea los tests en Java con Lippia MCP.<br/>
-                                5. Ejecuta los tests en Java con Lippia MCP.<br/>
+                                2. Lippia will open the browser and navigate autonomously through the application to map the flow and actions.<br/>
+                                3. Generate the feature files based on the User Story, leveraging the navigation performed by Lippia.<br/>
+                                4. Create the tests in Java with Lippia MCP.<br/>
+                                5. Execute the tests in Java with Lippia MCP.<br/>
                             </div>
                             <p class="small text-muted mt-2">
-                                The AI Agent will automatically coordinate both MCP servers to complete the entire flow.
+                                The AI Agent coordinates the entire flow using Lippia MCP Server for navigation and testing.
                             </p>
                         </div>
                     </div>

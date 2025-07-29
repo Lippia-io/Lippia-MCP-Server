@@ -1,7 +1,7 @@
 {
   "type": "object",
   "title": "Open Browser",
-  "description": "Abre una nueva instancia de navegador Chrome usando Lippia.",
+  "description": "Opens a new Chrome browser instance using Lippia.",
   "properties": {},
   "required": []
 } 

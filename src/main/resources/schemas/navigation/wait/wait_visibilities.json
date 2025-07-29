@@ -1,15 +1,15 @@
 {
   "type": "object",
-  "title": "Espera a que más de un elemento sean encontrados",
+  "title": "Waits for multiple elements to be found",
   "properties": {
     "by": {
       "type": "string",
       "enum": ["css", "xpath", "id", "name", "class", "tag", "accessibility_id", "android_ui_automator", "ios_ns_predicate", "custom", "image"],
-      "description": "El tipo de selector a utilizar"
+      "description": "The type of selector to use"
     },
     "selector": {
       "type": "string",
-      "description": "El selector de los elementos"
+      "description": "The elements selector"
     }
   },
   "required": ["by", "selector"]
