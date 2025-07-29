@@ -1,15 +1,15 @@
 {
   "type": "object",
-  "title": "Verifica una única vez a que un elemento esté presente",
+  "title": "Verifies once that an element is present",
   "properties": {
     "by": {
       "type": "string",
       "enum": ["css", "xpath", "id", "name", "class", "tag", "accessibility_id", "android_ui_automator", "ios_ns_predicate", "custom", "image"],
-      "description": "El tipo de selector a utilizar"
+      "description": "The type of selector to use"
     },
     "selector": {
       "type": "string",
-      "description": "El selector del elemento"
+      "description": "The element selector"
     }
   },
   "required": ["by", "selector"]

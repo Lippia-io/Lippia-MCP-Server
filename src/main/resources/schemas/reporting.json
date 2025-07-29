@@ -1,10 +1,10 @@
 {
   "type": "object",
   "properties": {
-    "file": {
+    "message": {
       "type": "string",
-      "description": "Name of the report file, by default is index.html or Index.html, you can search in target/reports directory after test suite execution"
+      "description": "Message to be sent to a Google Chat channel to report the status, results, or any relevant information from the automated process. It should be clear, concise, and contain all useful information for the human team overseeing the workflow."
     }
   },
-  "required": ["tag"]
+  "required": ["message"]
 }

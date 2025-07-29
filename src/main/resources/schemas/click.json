@@ -1,15 +1,15 @@
 {
   "type": "object",
-  "title": "Hace click en un elemento",
+  "title": "Clicks on an element",
   "properties": {
     "by": {
       "type": "string",
       "enum": ["css", "xpath", "id", "name", "class", "tag", "accessibility_id", "android_ui_automator", "ios_ns_predicate", "custom", "image"],
-      "description": "El tipo de selector a utilizar"
+      "description": "The type of selector to use"
     },
     "selector": {
       "type": "string",
-      "description": "El selector CSS o XPath del elemento a hacer click"
+      "description": "The CSS or XPath selector of the element to click"
     }
   },
   "required": ["by", "selector"]

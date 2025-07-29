@@ -1,7 +1,7 @@
 {
   "type": "object",
   "title": "Close Browser",
-  "description": "Cierra la instancia del navegador abierta.",
+  "description": "Closes the open browser instance.",
   "properties": {},
   "required": []
 } 

@@ -6,6 +6,7 @@ import io.appium.java_client.MobileBy;
 import io.lippia.models.Features;
 import io.lippia.models.requests.PromptFeatureRequest;
 
+import io.lippia.utils.GoogleChatNotifier;
 import io.lippia.utils.PromptBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -119,7 +120,7 @@ public class McpServerApplication {
         String schema = Resources.load("schemas/feature.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("create_feature", "Genera un prompt para crear feature files a partir una o más user stories", schema),
+                new McpSchema.Tool("create_feature", "Generates a prompt to create feature files from one or more user stories", schema),
                 (exchange, args) -> {
                     String userStory = (String) args.get("userStory");
 
@@ -128,7 +129,7 @@ public class McpServerApplication {
                     );
 
                     McpSchema.GetPromptResult gpr = new McpSchema.GetPromptResult(
-                            "Generar archivos .feature",
+                            "Generate .feature files",
                             List.of(new McpSchema.PromptMessage(McpSchema.Role.USER, new McpSchema.TextContent(prompt)))
                     );
 
@@ -141,7 +142,7 @@ public class McpServerApplication {
         String schema = Resources.load("schemas/test.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("create_test", "Genera los tests a partir de uno o más feature files", schema),
+                new McpSchema.Tool("create_test", "Generates tests from one or more feature files", schema),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
                     try {
                         ObjectMapper mapper = new ObjectMapper();
@@ -151,7 +152,7 @@ public class McpServerApplication {
                         final String prompt = PromptBuilder.buildPromptForSteps(features);
 
                         McpSchema.GetPromptResult gpr = new McpSchema.GetPromptResult(
-                                "Generar el glue code de los features",
+                                "Generate the glue code for the features",
                                 List.of(new McpSchema.PromptMessage(McpSchema.Role.USER, new McpSchema.TextContent(prompt)))
                         );
 
@@ -167,7 +168,7 @@ public class McpServerApplication {
         String schema = Resources.load("schemas/execute.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("execute_test", "Ejecuta los tests por tag", schema),
+                new McpSchema.Tool("execute_test", "Executes tests by tag", schema),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
                     log.info("Executing tests with arguments: {}", arguments);
                     String tag = arguments.get("tag").toString();
@@ -188,19 +189,40 @@ public class McpServerApplication {
         String schema = Resources.load("schemas/reporting.json");
 
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("get_report", "Retorna la ruta del reporte generado post ejecución", schema),
+                new McpSchema.Tool(
+                        "send_report",
+                        "Sends a report of work completed so far",
+                        schema
+                ),
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
-                    log.info("Getting report with arguments: {}", arguments);
-                    String file = arguments.get("file").toString();
-                    String command = String.format("""
-                Please open the following file with chrome or firefox:
+                    log.info("Sending report with arguments: {}", arguments);
 
-                ```bash
-                <current_working_dir>/target/reports/%s"
-                ```
-                """, file);
-                    McpSchema.Content content = new McpSchema.TextContent(command);
-                    return new McpSchema.CallToolResult(List.of(content), false);
+                    Object reportObj = arguments.get("message");
+                    String message = reportObj != null ? reportObj.toString() : null;
+
+                    if (message != null && !message.isBlank()) {
+                        try {
+                            GoogleChatNotifier.sendMessage(message);
+                            log.info("Report sent to Google Chat.");
+                        } catch (Exception e) {
+                            log.error("Error sending report to Google Chat", e);
+                            return new McpSchema.CallToolResult(
+                                    List.of(new McpSchema.TextContent("Error sending report: " + e.getMessage())),
+                                    false
+                            );
+                        }
+                    } else {
+                        log.warn("Report is empty or null.");
+                        return new McpSchema.CallToolResult(
+                                List.of(new McpSchema.TextContent("Report content is empty.")),
+                                false
+                        );
+                    }
+
+                    return new McpSchema.CallToolResult(
+                            List.of(new McpSchema.TextContent("Report sent successfully to Google Chat.")),
+                            false
+                    );
                 }
         );
     }
@@ -208,7 +230,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncOpenBrowserToolSpecification() {
         String schema = Resources.load("schemas/open_browser.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("open_browser", "Abre una nueva instancia de navegador Chrome usando Lippia.", schema),
+                new McpSchema.Tool("open_browser", "Opens a new Chrome browser instance using Lippia.", schema),
                 (exchange, args) -> {
                     try {
                         DriverManager.getDriverInstance();
@@ -223,7 +245,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncNavigateToToolSpecification() {
         String schema = Resources.load("schemas/navigate_to.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("navigate_to", "Navega a una URL usando el driver abierto.", schema),
+                new McpSchema.Tool("navigate_to", "Navigates to a URL using the open driver.", schema),
                 (exchange, args) -> {
                     try {
                         String url = (String) args.get("url");
@@ -239,7 +261,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncCloseBrowserToolSpecification() {
         String schema = Resources.load("schemas/close_browser.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("close_browser", "Cierra la instancia del navegador abierta.", schema),
+                new McpSchema.Tool("close_browser", "Closes the open browser instance.", schema),
                 (exchange, args) -> {
                     try {
                         DriverManager.getDriverInstance().quit();
@@ -254,7 +276,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncClickToolSpecification() {
         String schema = Resources.load("schemas/click.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("click", "Hace click en un elemento.", schema),
+                new McpSchema.Tool("click", "Clicks on an element.", schema),
                 (exchange, args) -> {
                     try {
                         String selector = (String) args.get("selector");
@@ -272,7 +294,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncTypeToolSpecification() {
         String schema = Resources.load("schemas/type.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("type", "Escribe texto en un campo de entrada.", schema),
+                new McpSchema.Tool("type", "Types text into an input field.", schema),
                 (exchange, args) -> {
                     try {
                         String selector = (String) args.get("selector");
@@ -291,7 +313,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncGetTextToolSpecification() {
         String schema = Resources.load("schemas/get_text.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("get_text", "Obtiene el texto de un elemento.", schema),
+                new McpSchema.Tool("get_text", "Gets the text from an element.", schema),
                 (exchange, args) -> {
                     try {
                         String selector = (String) args.get("selector");
@@ -308,7 +330,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncScreenshotToolSpecification() {
         String schema = Resources.load("schemas/screenshot.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("screenshot", "Toma una captura de pantalla y la guarda en un archivo.", schema),
+                new McpSchema.Tool("screenshot", "Takes a screenshot and saves it to a file.", schema),
                 (exchange, args) -> {
                     try {
                         String filename = (String) args.get("filename");
@@ -335,7 +357,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitClickableToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_clickable.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_clickable", "Espera a que un elemento sea clickable", schema),
+                new McpSchema.Tool("wait_clickable", "Waits for an element to be clickable", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -353,7 +375,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitVisibilityToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_visibility.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_visibility", "Espera a que un elemento sea encontrado.", schema),
+                new McpSchema.Tool("wait_visibility", "Waits for an element to be found.", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -371,7 +393,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitVisibilitiesToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_visibilities.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_visibilities", "Espera a que más de un elemento sean encontrados", schema),
+                new McpSchema.Tool("wait_visibilities", "Waits for multiple elements to be found", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -392,7 +414,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitInvisibilityToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_invisibility.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_invisibility", "Espera a que un elemento no sea encontrado.", schema),
+                new McpSchema.Tool("wait_invisibility", "Waits for an element to not be found.", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -410,7 +432,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitInvisibilitiesToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_invisibilities.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_invisibilities", "Espera a que más de un elemento no sean encontrados", schema),
+                new McpSchema.Tool("wait_invisibilities", "Waits for multiple elements to not be found", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -431,7 +453,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitPresenceToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_presence.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_presence", "Espera a que un elemento esté presente", schema),
+                new McpSchema.Tool("wait_presence", "Waits for an element to be present", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -449,7 +471,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncWaitPresencesToolSpecification() {
         String schema = Resources.load("schemas/navigation/wait/wait_presences.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("wait_presences", "Espera a que más de un elemento estén presentes", schema),
+                new McpSchema.Tool("wait_presences", "Waits for multiple elements to be present", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -471,7 +493,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncIsEnabledToolSpecification() {
         String schema = Resources.load("schemas/navigation/verification/is_enabled.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("is_enabled", "Verifica una única vez si el elemento está habilitado", schema),
+                new McpSchema.Tool("is_enabled", "Verifies once if the element is enabled", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -493,7 +515,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncIsSelectedToolSpecification() {
         String schema = Resources.load("schemas/navigation/verification/is_selected.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("is_selected", "Verifica una única vez si el elemento está seleccionado", schema),
+                new McpSchema.Tool("is_selected", "Verifies once if the element is selected", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -515,7 +537,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncIsPresentToolSpecification() {
         String schema = Resources.load("schemas/navigation/verification/is_present.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("is_present", "Verifica una única vez si el elemento está presente", schema),
+                new McpSchema.Tool("is_present", "Verifies once if the element is present", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -537,7 +559,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncIsVisibleToolSpecification() {
         String schema = Resources.load("schemas/navigation/verification/is_visible.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("is_visible", "Verifica una única vez si el elemento es visible", schema),
+                new McpSchema.Tool("is_visible", "Verifies once if the element is visible", schema),
                 (exchange, args) -> {
                     try {
                         String by = (String) args.get("by");
@@ -561,7 +583,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncGetPageTitleToolSpecification() {
         String schema = Resources.load("schemas/get_page_title.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("get_page_title", "Obtiene el título de la página actual.", schema),
+                new McpSchema.Tool("get_page_title", "Gets the title of the current page.", schema),
                 (exchange, args) -> {
                     try {
                         WebDriver driver = DriverManager.getDriverInstance();
@@ -577,7 +599,7 @@ public class McpServerApplication {
     private static McpServerFeatures.SyncToolSpecification getSyncGetPageSourceToolSpecification() {
         String schema = Resources.load("schemas/get_page_source.json");
         return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("get_page_source", "Obtiene el código fuente HTML completo de la página actual.", schema),
+                new McpSchema.Tool("get_page_source", "Gets the complete HTML source code of the current page.", schema),
                 (exchange, args) -> {
                     try {
                         WebDriver driver = DriverManager.getDriverInstance();
