@@ -1,10 +1,15 @@
 {
   "type": "object",
   "properties": {
+    "channel": {
+      "type": "string",
+      "description": "The target channel where the message should be sent. Valid values are: 'google', 'slack', 'teams', or 'discord'. Each one corresponds to a different notification platform.",
+      "enum": ["google", "slack", "teams", "discord"]
+    },
     "message": {
       "type": "string",
-      "description": "Message to be sent to a Google Chat channel to report the status, results, or any relevant information from the automated process. It should be clear, concise, and contain all useful information for the human team overseeing the workflow."
+      "description": "The message to be sent to the specified channel. It should clearly report the status, results, or any relevant information from the automated process. The content must be human-readable, concise, and informative for the team monitoring the workflow."
     }
   },
-  "required": ["message"]
+  "required": ["channel", "message"]
 }

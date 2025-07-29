@@ -2,11 +2,12 @@ package io.lippia;
 
 import com.crowdar.core.actions.ActionManager;
 
-import io.appium.java_client.MobileBy;
 import io.lippia.models.Features;
 import io.lippia.models.requests.PromptFeatureRequest;
 
-import io.lippia.utils.GoogleChatNotifier;
+import io.lippia.reporting.Notifier;
+import io.lippia.reporting.NotifierServiceFactory;
+
 import io.lippia.utils.PromptBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +33,6 @@ import java.util.Map;
 import com.crowdar.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
 import org.apache.commons.io.FileUtils;
@@ -197,30 +197,42 @@ public class McpServerApplication {
                 (McpSyncServerExchange exchange, Map<String, Object> arguments) -> {
                     log.info("Sending report with arguments: {}", arguments);
 
+                    Object reportChannel = arguments.get("channel");
                     Object reportObj = arguments.get("message");
+
+                    String channel = reportChannel != null ? reportChannel.toString() : null;
                     String message = reportObj != null ? reportObj.toString() : null;
 
                     if (message != null && !message.isBlank()) {
                         try {
-                            GoogleChatNotifier.sendMessage(message);
+                            Notifier service = NotifierServiceFactory.find(channel);
+                            if (service == null) {
+                                return new McpSchema.CallToolResult(
+                                        List.of(new McpSchema.TextContent(
+                                                String.format("Error sending report, channel %s does not exist: ", channel))),
+                                        true
+                                );
+                            }
+
+                            service.sendMessage(message);
                             log.info("Report sent to Google Chat.");
                         } catch (Exception e) {
-                            log.error("Error sending report to Google Chat", e);
+                            log.error("Error sending report to {}", channel);
                             return new McpSchema.CallToolResult(
                                     List.of(new McpSchema.TextContent("Error sending report: " + e.getMessage())),
-                                    false
+                                    true
                             );
                         }
                     } else {
                         log.warn("Report is empty or null.");
                         return new McpSchema.CallToolResult(
                                 List.of(new McpSchema.TextContent("Report content is empty.")),
-                                false
+                                true
                         );
                     }
 
                     return new McpSchema.CallToolResult(
-                            List.of(new McpSchema.TextContent("Report sent successfully to Google Chat.")),
+                            List.of(new McpSchema.TextContent("Report sent successfully to " + channel)),
                             false
                     );
                 }
