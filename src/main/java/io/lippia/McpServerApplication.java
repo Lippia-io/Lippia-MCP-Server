@@ -51,12 +51,12 @@ public class McpServerApplication {
 
         /* Navigation Tools */
 
-        // browser management
+        // browser managements
         var syncOpenBrowserToolSpecification = getSyncOpenBrowserToolSpecification();
         var syncNavigateToToolSpecification = getSyncNavigateToToolSpecification();
         var syncCloseBrowserToolSpecification = getSyncCloseBrowserToolSpecification();
 
-        // wait
+        // waits
         var syncWaitClickableToolSpecification = getSyncWaitClickableToolSpecification();
         var syncWaitVisibilityToolSpecification = getSyncWaitVisibilityToolSpecification();
         var syncWaitVisibilitiesToolSpecification = getSyncWaitVisibilitiesToolSpecification();
@@ -65,7 +65,7 @@ public class McpServerApplication {
         var syncWaitPresenceToolSpecification = getSyncWaitPresenceToolSpecification();
         var syncWaitPresencesToolSpecification = getSyncWaitPresencesToolSpecification();
 
-        // verification
+        // verifications
         var syncIsEnabledToolSpecification = getSyncIsEnabledToolSpecification();
         var syncIsSelectedToolSpecification = getSyncIsSelectedToolSpecification();
         var syncIsPresentToolSpecification = getSyncIsPresentToolSpecification();
@@ -215,7 +215,7 @@ public class McpServerApplication {
                             }
 
                             service.sendMessage(message);
-                            log.info("Report sent to Google Chat.");
+                            log.info("Report sent to {}.", channel);
                         } catch (Exception e) {
                             log.error("Error sending report to {}", channel);
                             return new McpSchema.CallToolResult(
