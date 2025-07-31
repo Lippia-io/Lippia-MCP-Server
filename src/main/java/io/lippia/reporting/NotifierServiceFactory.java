@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 public enum NotifierServiceFactory {
-    GOOGLE("google", GoogleChat::new),
+    GOOGLE("google", Google::new),
     SLACK("slack", Slack::new),
     TEAMS("teams", Teams::new),
     DISCORD("discord", Discord::new);

@@ -2,7 +2,7 @@ package io.lippia.reporting;
 
 import okhttp3.*;
 
-public class GoogleChat implements Notifier {
+public class Google implements Notifier {
     private final String WEBHOOK_URL = System.getenv().get("WEBHOOK_URL_GOOGLE");
 
     @Override
