@@ -1,5 +1,7 @@
 package io.lippia.reporting;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import okhttp3.*;
 
 public class Slack implements Notifier {
@@ -11,7 +13,10 @@ public class Slack implements Notifier {
             throw new IllegalStateException("WEBHOOK_URL_SLACK is not set. Please set the WEBHOOK_URL_SLACK environment variable.");
         }
 
-        String json = String.format("{\"text\": \"%s\"}", message);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("text", message);
+        String json = new Gson().toJson(jsonObject);
+
         MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(json, mediaType);
         Webhook.send(WEBHOOK_URL, body);

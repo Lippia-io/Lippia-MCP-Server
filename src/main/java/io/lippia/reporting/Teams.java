@@ -1,5 +1,7 @@
 package io.lippia.reporting;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -12,7 +14,10 @@ public class Teams implements Notifier {
             throw new IllegalStateException("WEBHOOK_URL_TEAMS is not set. Please set the WEBHOOK_URL_TEAMS environment variable.");
         }
 
-        String json = String.format("{\"text\": \"%s\"}", message);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("text", message);
+        String json = new Gson().toJson(jsonObject);
+
         MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(json, mediaType);
         Webhook.send(WEBHOOK_URL, body);
