@@ -2,8 +2,6 @@ package io.lippia;
 
 import com.crowdar.core.actions.ActionManager;
 
-import com.crowdar.driver.ProjectTypeEnum;
-import com.crowdar.driver.setupStrategy.NoneStrategy;
 import io.lippia.models.Features;
 import io.lippia.models.requests.PromptFeatureRequest;
 
@@ -15,23 +13,22 @@ import io.lippia.utils.PromptBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.lippia.utils.Resources;
+
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.server.McpSyncServerExchange;
 import io.modelcontextprotocol.server.transport.StdioServerTransportProvider;
 import io.modelcontextprotocol.spec.McpSchema;
 
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.File;
-import java.net.URL;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -242,62 +239,6 @@ public class McpServerApplication {
                     );
                 }
         );
-    }
-
-    private static McpServerFeatures.SyncToolSpecification getSyncOpenMobileApplicationToolSpecification() {
-        String schema = Resources.load("schemas/open_mobile_application.json");
-        return new McpServerFeatures.SyncToolSpecification(
-                new McpSchema.Tool("open_mobile_application", "Opens a mobile application using Lippia.", schema),
-                (exchange, args) -> {
-                    try {
-                        String platformName = args.get("platformName").toString();
-                        String deviceName = args.get("deviceName").toString();
-                        String driverHub = args.get("driverHub").toString();
-                        String appLocation = args.get("appLocation").toString();
-
-                        ProjectTypeEnum projectType;
-
-                        if (platformName == null || platformName.isBlank()) {
-                            return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent("Error creating driver, platformName can not be blank")), true);
-                        }
-
-                        if (platformName.equalsIgnoreCase("android")) {
-                            projectType = ProjectTypeEnum.MOBILE_ANDROID;
-                        } else if (platformName.equalsIgnoreCase("ios")) {
-                            projectType = ProjectTypeEnum.MOBILE_IOS;
-                        } else {
-                            return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent("Error creating driver, os: " + platformName + " does not exist")), true);
-                        }
-
-                        Map<String, String> capabilities = getStringStringMap(deviceName, appLocation, platformName);
-
-                        DriverManager.initialize(
-                                projectType,
-                                new NoneStrategy(),
-                                new URL(driverHub),
-                                capabilities
-                        );
-
-                        DriverManager.getDriverInstance();
-                        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent("Mobile application opened successfully.")), false);
-                    } catch (Exception e) {
-                        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent("Error opening mobile application: " + e.getMessage())), true);
-                    }
-                }
-        );
-    }
-
-    @NotNull
-    private static Map<String, String> getStringStringMap(String deviceName, String appLocation, String platformName) {
-        Map<String, String> capabilities = new LinkedHashMap<>();
-
-        capabilities.put("appium:deviceName", deviceName);
-        capabilities.put("appium:app", appLocation);
-        capabilities.put("appium:platformName", platformName);
-        capabilities.put("appium:automationName", "UiAutomator2");
-        capabilities.put("appium:resetKeyboard", "true");
-        capabilities.put("appium:unicodeKeyboard", "true");
-        return capabilities;
     }
 
     private static McpServerFeatures.SyncToolSpecification getSyncOpenBrowserToolSpecification() {
