@@ -1,24 +1,39 @@
+stages:
+  - Deploy
+  - Publish
+
+variables:
+  GIT_STRATEGY: fetch
+  GIT_DEPTH: "0"
+
 pages:
-  stage: deploy
+  stage: Deploy
   script:
-    - mkdir public
-    # Copy all HTML pages
+    - mkdir -p public
     - cp index.html public/
-    - cp getting-started.html public/
-    # Copy any image assets
+    - cp getting-started.html public/ || true
     - cp *.svg public/ 2>/dev/null || true
     - cp *.png public/ 2>/dev/null || true
     - cp *.jpg public/ 2>/dev/null || true
     - cp *.jpeg public/ 2>/dev/null || true
     - cp *.ico public/ 2>/dev/null || true
-    # Copy any CSS/JS assets if they exist
     - cp *.css public/ 2>/dev/null || true
     - cp *.js public/ 2>/dev/null || true
-    # List what we're deploying (for debugging)
     - ls -la public/
   artifacts:
     paths:
       - public
-  only:
-    - main
-    - master 
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+github_publish:
+  stage: Publish
+  script:
+    - mkdir -p ~/.ssh
+    - printf "%s" "$GITHUB_DEPLOY_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan github.com >> ~/.ssh/known_hosts
+    - git push git@github.com:${GITHUB_REPO}.git HEAD:${CI_COMMIT_REF_NAME} --force
+    - git push git@github.com:${GITHUB_REPO}.git --tags
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
