@@ -30,7 +30,7 @@ github_publish:
     GIT_DEPTH: "0"
   script:
     - mkdir -p ~/.ssh
-    - printf "%s" "$GITHUB_DEPLOY_KEY" > ~/.ssh/id_rsa
+    - echo "$GITHUB_DEPLOY_KEY" | sed -e 's/\r$//' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - ssh-keyscan github.com >> ~/.ssh/known_hosts
     - git push git@github.com:${GITHUB_REPO}.git HEAD:${CI_COMMIT_REF_NAME} --force
