@@ -33,7 +33,7 @@ github_publish:
     - echo "$GITHUB_DEPLOY_KEY" | sed -e 's/\r$//' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - ssh-keyscan github.com >> ~/.ssh/known_hosts
-    - git push git@github.com:${GITHUB_REPO}.git HEAD:${CI_COMMIT_REF_NAME} --force
+    - git push git@github.com:${GITHUB_REPO}.git HEAD:refs/heads/${CI_COMMIT_REF_NAME} --force
     - git push git@github.com:${GITHUB_REPO}.git --tags
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
