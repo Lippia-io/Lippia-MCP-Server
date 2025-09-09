@@ -2,10 +2,6 @@ stages:
   - Deploy
   - Publish
 
-variables:
-  GIT_STRATEGY: fetch
-  GIT_DEPTH: "0"
-
 pages:
   stage: Deploy
   script:
@@ -28,6 +24,10 @@ pages:
 
 github_publish:
   stage: Publish
+  image: alpine/git
+  variables:
+    GIT_STRATEGY: fetch
+    GIT_DEPTH: "0"
   script:
     - mkdir -p ~/.ssh
     - printf "%s" "$GITHUB_DEPLOY_KEY" > ~/.ssh/id_rsa
